@@ -1,4 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:TrashTrackProjectV2.ViewModel"
+                    xmlns:view="clr-namespace:TrashTrackProjectV2.View">
+
+    <DataTemplate DataType="{x:Type vm:BerandaVM}">
+        <view:Beranda/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PesanVM}">
+        <view:Pesan/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:RiwayatVM}">
+        <view:Riwayat/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:BerlanggananVM}">
+        <view:Berlangganan/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AkunVM}">
+        <view:Akun/>
+    </DataTemplate>
 </ResourceDictionary>
