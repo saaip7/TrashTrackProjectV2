@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="img\crossClose.png" />
+    <None Remove="img\emailBig.png" />
+    <None Remove="img\logo a.png" />
+    <None Remove="img\padlock.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\crossClose.png" />
+    <Resource Include="img\emailBig.png" />
+    <Resource Include="img\logo a.png" />
+    <Resource Include="img\padlock.png" />
+  </ItemGroup>
+
+</Project>
