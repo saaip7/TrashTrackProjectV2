@@ -4,118 +4,26 @@
              xmlns:local="clr-namespace:TrashTrackProjectV2"
              StartupUri="LoginPage.xaml">
     <Application.Resources>
-
-        <Style x:Key="titleText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="#F5F2EB"/>
-        </Style>
-
-        <Style x:Key="normalText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontWeight" Value="Regular"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="LineHeight" Value="1.5"/>
-            <Setter Property="Foreground" Value="#F5F2EB"/>
-        </Style>
-
-        <Style x:Key="buttonYellow" TargetType="Button">
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Width" Value="140"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Background" Value="#FDC727"/>
-            <Setter Property="Foreground" Value="#1D1D21"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="#B18910" BorderThickness="1" CornerRadius="25" Padding="15">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#1D1D21"/>
-                    <Setter Property="Background" Value="#F4D477"/>
-                </Trigger>
-                <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="Foreground" Value="#1D1D21"/>
-                    <Setter Property="Background" Value="#B28C1B"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="buttonMain1" TargetType="Button">
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Width" Value="340"/>
-            <Setter Property="Margin" Value="0 20 0 0"/>
-            <Setter Property="Background" Value="#FEFEFE"/>
-            <Setter Property="Foreground" Value="#1D1D21"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="#727677" BorderThickness="0.75" CornerRadius="25" Padding="15">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#F5F2EB"/>
-                    <Setter Property="Background" Value="#04444D"/>
-                </Trigger>
-                <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="Foreground" Value="#F5F2EB"/>
-                    <Setter Property="Background" Value="#03292E"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="textBox" TargetType="Control">
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontWeight" Value="Regular"/>
-            <Setter Property="Foreground" Value="#1D1D21"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin" Value="10 0 0 0"/>
-            <Setter Property="Grid.Column" Value="1"/>
-            <Setter Property="Background" Value="#E4E1DC"/>
-        </Style>
-
-        <Style x:Key="imgClose" TargetType="Image">
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0 13 13 0"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="RenderTransform">
-                        <Setter.Value>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-
-
-
-
-
+        
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary Source="Styles/Page.xaml" />
+                <ResourceDictionary Source="Styles/Image.xaml" />
+                <ResourceDictionary Source="Styles/Text.xaml" />
+                <ResourceDictionary Source="Styles/Button.xaml" />
+                <ResourceDictionary Source="Styles/TextTitle.xaml"/>
+                <ResourceDictionary Source="Styles/normalText.xaml"/>
+                <ResourceDictionary Source="Styles/buttonYellow.xaml"/>
+                <ResourceDictionary Source="Styles/buttonMain1.xaml"/>
+                <ResourceDictionary Source="Styles/TextBox.xaml"/>
+                <ResourceDictionary Source="Styles/imgclose.xaml"/>
+                <ResourceDictionary Source="Utilities/DataTemplate.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+  
     </Application.Resources>
 </Application>

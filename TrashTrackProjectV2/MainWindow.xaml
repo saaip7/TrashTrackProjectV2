@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrashTrackProjectV2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="600" 
+        Width="850"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+    
     <Grid>
+
+        <!--// Window Border //-->
+
+        <Border Background="#F5F2EB"
+        CornerRadius="15" Grid.RowSpan="2" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228" />
+                <ColumnDefinition Width="622" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
 
     </Grid>
 </Window>

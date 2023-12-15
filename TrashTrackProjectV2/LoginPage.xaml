@@ -36,9 +36,9 @@
 
                 <StackPanel VerticalAlignment="Center">
                     <Image Source="/img/logo a.png" Width="113"/>
-                    <TextBlock Text="Daftar Sekarang" Style="{StaticResource titleText}" Margin="0 10"/>
+                    <TextBlock Text="Daftar Sekarang" Margin="0 10" Style="{StaticResource titleText}"/>
                     <Rectangle Height="3" Width="55" Fill="#F5F2EB" Margin="0 10"/>
-                    <TextBlock Text="Daftarkan diri anda dan rasakan keuntungan yang diberikan" Style="{StaticResource normalText}" Width="240" Margin="20 10"/>
+                    <TextBlock Text="Daftarkan diri anda dan rasakan keuntungan yang diberikan" Style="{StaticResource normalText}"  Width="240" Margin="20 10"/>
                     <Button Content="Daftar" Style="{StaticResource buttonYellow}" Margin="0 24" Click="Button_Click_1"/>
                 </StackPanel>
             </Grid>
