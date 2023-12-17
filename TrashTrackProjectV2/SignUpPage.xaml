@@ -166,7 +166,7 @@
                     </Grid>
                 </Border>
                 
-                <Button Content="Daftar" Style="{StaticResource buttonMain1}"/>
+                <Button Content="Daftar" Style="{StaticResource buttonMain1}" Click="Button_Click_1"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
+using TrashTrackProjectV2.Model;
+using static TrashTrackProjectV2.Model.User;
 
 namespace TrashTrackProjectV2
 {
@@ -60,11 +64,34 @@ namespace TrashTrackProjectV2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            User user = new User();
             if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
             {
                 if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
                 {
-                    if (txtEmail.Text == "admin" && txtPassword.Password == "admin")
+                    string email = txtEmail.Text;
+                    string password = txtPassword.Password.ToString();
+
+                    LoginResult loginResult = user.IsValidUser(email, password);
+
+                    switch (loginResult)
+                    {
+                        case LoginResult.Success:
+                            MainWindow main = new MainWindow();
+                            main.Show();
+                            this.Close();
+                            // Lakukan tindakan setelah login berhasil
+                            break;
+
+                        case LoginResult.EmailNotFound:
+                            MessageBox.Show("Email tidak ditemukan.", "Gagal Login");
+                            break;
+
+                        case LoginResult.InvalidPassword:
+                            MessageBox.Show("Password tidak valid.", "Gagal Login");
+                            break;
+                    }
+                    /*if (user.IsValidUser(txtEmail.Text, txtPassword.Password.ToString()))
                     {
                         MainWindow main = new MainWindow();
                         main.Show();
@@ -73,7 +100,7 @@ namespace TrashTrackProjectV2
                     else
                     {
                         MessageBox.Show("Email or Password is incorrect");
-                    }
+                    }*/
                 }
                 else
                 {
@@ -105,5 +132,6 @@ namespace TrashTrackProjectV2
             signUp.Show();
             this.Close();
         }
+        
     }
 }

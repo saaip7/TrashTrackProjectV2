@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TrashTrackProjectV2.Model;
 
 namespace TrashTrackProjectV2
 {
@@ -95,5 +96,45 @@ namespace TrashTrackProjectV2
         {
 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+
+            // Ambil data dari antarmuka pengguna
+            string username = txtUsername.Text;
+            string nama = txtNama.Password.ToString();
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
+            string notelp = txtNoTelp.Text;
+            string alamat = txtAlamat.Text;
+
+            // Lakukan operasi insert menggunakan ViewModel
+           bool success=user.Insert(username, nama, email, password, notelp, alamat);
+
+            // Tampilkan pesan bahwa insert berhasil
+            if (success == true)
+            {
+                //Successfully Inserted
+                MessageBox.Show("New User Successfully Added");
+                //Call the Clear Method Here
+                //Clear();
+                txtUsername.Clear();
+                txtNama.Clear();
+                txtEmail.Clear();
+                txtPassword.Clear();
+                txtNoTelp.Clear();
+                txtAlamat.Clear();
+
+            }
+            else
+            {
+                //Failed to Add Contact
+                MessageBox.Show("Failed to Add New User. Check your Username and email");
+            }
+        }
+
     }
+
+
 }
