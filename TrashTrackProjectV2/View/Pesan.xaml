@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:TrashTrackProjectV2.ViewModel"
+             xmlns:wpf1="clr-namespace:Mapsui.UI.Wpf;assembly=Mapsui.UI.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="600" 
              d:DesignWidth="622"
@@ -14,10 +15,15 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="76*"/>
+            <RowDefinition Height="99*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0" Grid.RowSpan="3">
             <StackPanel>
                 <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
-                <Image Height="228" Source="/img/maps.png" Stretch="Fill" Width="499"/>
+                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" />
                 <Grid>
                     <Button Content="Pesan Tukang Sampah" Style="{StaticResource buttonMain2}" Margin="62,20,360,0" Width="200"/>
                     <TextBlock Text="Jatah Minggu Ini: " FontSize="18" FontWeight="Bold" Margin="393,15,80,30" Foreground="#1D1D21"/>

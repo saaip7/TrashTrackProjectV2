@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Mapsui.UI.Wpf;
+using Mapsui;
+
 
 namespace TrashTrackProjectV2.View
 {
@@ -23,6 +26,11 @@ namespace TrashTrackProjectV2.View
         public Pesan()
         {
             InitializeComponent();
+            //Create Map
+            MapControl.Map?.Layers.Add(Mapsui.Tiling.OpenStreetMap.CreateTileLayer());
+            //Map Borders
+            MapControl.Map.Navigator.OverridePanBounds = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
+            MapControl.Map.Navigator.OverrideZoomBounds = new MMinMax(0, 200);
         }
     }
 }
