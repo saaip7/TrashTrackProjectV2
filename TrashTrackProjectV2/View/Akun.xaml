@@ -20,11 +20,13 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.25*"/>
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <TextBlock Text="Nama :" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding userAkun}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="1" VerticalAlignment="Center"/>
+                        <TextBlock Text="Nama" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="{Binding userAkun}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
 
@@ -32,11 +34,13 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.25*"/>
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Alamat :" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding userAkun}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="1" VerticalAlignment="Center"/>
+                        <TextBlock Text="Alamat" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="{Binding userAkun}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
 
@@ -44,11 +48,13 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.25*"/>
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Nomor Telp :" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding userAkun}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="1" VerticalAlignment="Center"/>
+                        <TextBlock Text="Nomor Telp" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="{Binding userAkun}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
             </StackPanel>
