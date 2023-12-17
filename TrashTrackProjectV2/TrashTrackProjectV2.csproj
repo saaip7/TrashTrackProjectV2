@@ -18,7 +18,14 @@
     <None Remove="img\maps.png" />
     <None Remove="img\padlock.png" />
     <None Remove="img\pesan.png" />
+    <None Remove="img\PinMap.png" />
     <None Remove="img\riwayat.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="img\PinMap.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

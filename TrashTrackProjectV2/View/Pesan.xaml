@@ -16,11 +16,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="76*"/>
-            <RowDefinition Height="99*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0" Grid.RowSpan="3">
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
             <StackPanel>
                 <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
                 <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" />
