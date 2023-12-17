@@ -22,7 +22,7 @@
 
                         <Border.Background>
                             <SolidColorBrush x:Name="BorderBackground"
-                                         Color="#272B2F" />
+                                         Color="#04444D" />
                         </Border.Background>
 
                         <Grid>
@@ -60,8 +60,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                From="#272B2F"
-                                                To="#3E434A"
+                                                From="#04444D"
+                                                To="#09616E"
                                                 Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -75,8 +75,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                From="#3E434A"
-                                                To="#272B2F"
+                                                From="#09616E"
+                                                To="#04444D"
                                                 Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -88,7 +88,7 @@
 
                             <Setter Property="Background"
                                 TargetName="border"
-                                Value="#212529" />
+                                Value="#003239" />
 
                             <Setter Property="Visibility"
                                 TargetName="Indicator"
@@ -105,11 +105,11 @@
     </Style>
 
     <ImageBrush x:Key="close_app_def"
-            ImageSource="/Images/shutdown_def.png"
+            ImageSource="/img/shutdown_def.png"
             Stretch="None" />
 
     <ImageBrush x:Key="close_app_mo"
-            ImageSource="/Images/shutdown_mo.png"
+            ImageSource="/img/shutdown_mo.png"
             Stretch="None" />
 
     <Style x:Key="ExitApp"

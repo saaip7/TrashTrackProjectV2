@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TrashTrackProjectV2"
+        xmlns:vm="clr-namespace:TrashTrackProjectV2.ViewModel"
+        xmlns:Menu="clr-namespace:TrashTrackProjectV2.Utilities"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="600" 
@@ -12,7 +13,11 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent">
-    
+
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+
     <Grid>
 
         <!--// Window Border //-->
@@ -25,6 +30,55 @@
                 <ColumnDefinition Width="228" />
                 <ColumnDefinition Width="622" />
             </Grid.ColumnDefinitions>
+
+
+            <Grid HorizontalAlignment="Left" Width="228">
+                <Border Background="#04444D" CornerRadius="15,0,0,15"/>
+                <StackPanel VerticalAlignment="Top">
+                    <Grid Margin="0 12">
+                        <Image Source="img/logo a.png" Width="70" RenderTransformOrigin="0.829,0.497" Margin="24,0,134,0"/>
+                        <TextBlock Text="TrashTrack" FontWeight="Bold" Foreground="White" FontSize="20" Margin="94,0,35,0" VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}" IsChecked="True">
+                        <Grid>
+                            <Image Source="img/beranda.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Beranda" Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                        <Grid>
+                            <Image Source="img/pesan.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Pesan" Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                        <Grid>
+                            <Image Source="img/riwayat.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Riwayat" Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                        <Grid>
+                            <Image Source="img/berlangganan.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Berlangganan" Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </Menu:Btn>
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                        <Grid>
+                            <Image Source="img/akun.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Akun" Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </Menu:Btn>
+
+                </StackPanel>
+            </Grid>
+
         </Grid>
 
 
