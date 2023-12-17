@@ -13,7 +13,9 @@
     <None Remove="img\berlangganan.png" />
     <None Remove="img\crossClose.png" />
     <None Remove="img\emailBig.png" />
+    <None Remove="img\image beranda.png" />
     <None Remove="img\logo a.png" />
+    <None Remove="img\maps.png" />
     <None Remove="img\padlock.png" />
     <None Remove="img\pesan.png" />
     <None Remove="img\riwayat.png" />
@@ -25,7 +27,9 @@
     <Resource Include="img\berlangganan.png" />
     <Resource Include="img\crossClose.png" />
     <Resource Include="img\emailBig.png" />
+    <Resource Include="img\image beranda.png" />
     <Resource Include="img\logo a.png" />
+    <Resource Include="img\maps.png" />
     <Resource Include="img\padlock.png" />
     <Resource Include="img\pesan.png" />
     <Resource Include="img\riwayat.png" />

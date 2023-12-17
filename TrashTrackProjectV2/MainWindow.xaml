@@ -41,35 +41,35 @@
                     </Grid>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center">
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}" IsChecked="True">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding BerandaCommand}" IsChecked="True">
                         <Grid>
                             <Image Source="img/beranda.png" Style="{StaticResource Image_Style}" />
                             <TextBlock Text="Beranda" Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding PesanCommand}">
                         <Grid>
                             <Image Source="img/pesan.png" Style="{StaticResource Image_Style}" />
                             <TextBlock Text="Pesan" Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding RiwayatCommand}">
                         <Grid>
                             <Image Source="img/riwayat.png" Style="{StaticResource Image_Style}" />
                             <TextBlock Text="Riwayat" Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding BerlanggananCommand}">
                         <Grid>
                             <Image Source="img/berlangganan.png" Style="{StaticResource Image_Style}" />
                             <TextBlock Text="Berlangganan" Style="{StaticResource Text_Style}" />
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding AkunCommand}">
                         <Grid>
                             <Image Source="img/akun.png" Style="{StaticResource Image_Style}" />
                             <TextBlock Text="Akun" Style="{StaticResource Text_Style}" />

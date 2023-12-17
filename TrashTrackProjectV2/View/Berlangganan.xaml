@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="TrashTrackProjectV2.View.Berlangganan"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TrashTrackProjectV2.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.DataContext>
+        <vm:BerlanggananVM/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+            <StackPanel>
+                <TextBlock Text="Berlangganan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
+                <Border Margin="0 20">
+                    <StackPanel>
+                        <Grid>
+                            <Border Background="#04444D" Height="217" Width="140" Margin="60,0,422,0" CornerRadius="10">
+                                <StackPanel>
+                                    <TextBlock Text="Paket Basic" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <Image Source="/img/logo a.png" Height="122"/>
+                                    <Grid>
+                                        <TextBlock Text="Hari Tersedia:" FontSize="15" FontWeight="SemiBold" Foreground="White" Margin="15,0,30,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding DisplayDayPaket}" FontSize="15" Foreground="White" VerticalAlignment="Center" Margin="110,0,10,0" FontWeight="SemiBold"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#04444D" Height="217" Width="140" CornerRadius="10"/>
+                            <Border Background="#04444D" Height="217" Width="140" Margin="422,0,60,0" CornerRadius="10"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

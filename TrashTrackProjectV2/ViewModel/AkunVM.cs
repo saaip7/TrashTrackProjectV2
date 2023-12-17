@@ -22,7 +22,7 @@ namespace TrashTrackProjectV2.ViewModel
         public AkunVM()
         {
             _pageModel = new PageModel();
-            userAkun = "Joko";
+            userAkun = "Jack Vinland";
         }
 
     }

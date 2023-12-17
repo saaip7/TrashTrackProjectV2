@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="Styles/buttonMain1.xaml"/>
                 <ResourceDictionary Source="Styles/TextBox.xaml"/>
                 <ResourceDictionary Source="Styles/imgclose.xaml"/>
+                <ResourceDictionary Source="Styles/buttonMain2.xaml"/>
                 <ResourceDictionary Source="Utilities/DataTemplate.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
