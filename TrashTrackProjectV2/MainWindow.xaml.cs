@@ -24,5 +24,10 @@ namespace TrashTrackProjectV2
         {
             InitializeComponent();
         }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

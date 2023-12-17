@@ -36,8 +36,8 @@
                 <Border Background="#04444D" CornerRadius="15,0,0,15"/>
                 <StackPanel VerticalAlignment="Top">
                     <Grid Margin="0 12">
-                        <Image Source="img/logo a.png" Width="70" RenderTransformOrigin="0.829,0.497" Margin="24,0,134,0"/>
-                        <TextBlock Text="TrashTrack" FontWeight="Bold" Foreground="White" FontSize="20" Margin="94,0,35,0" VerticalAlignment="Center"/>
+                        <Image Source="img/logo a.png" Width="70" RenderTransformOrigin="0.829,0.497" Margin="19,0,139,0"/>
+                        <TextBlock Text="TrashTrack" FontWeight="Bold" Foreground="White" FontSize="20" Margin="89,0,40,0" VerticalAlignment="Center"/>
                     </Grid>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center">
@@ -78,9 +78,17 @@
 
                 </StackPanel>
             </Grid>
+            
+            <Grid Grid.Column="1">
+
+                <ContentControl x:Name="Pages"
+                    Content="{Binding CurrentView}" />
+
+            </Grid>
 
         </Grid>
 
+        <Image Source="/img/crossClose.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose}"/>
 
     </Grid>
 </Window>
