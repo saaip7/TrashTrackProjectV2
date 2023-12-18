@@ -34,11 +34,11 @@
 
         <Border Margin="331,280,69,67">
             <StackPanel>
-                <TextBlock Text="Masa Langganan" FontWeight="Bold" FontSize="20" Margin="0 5"/>
+                <TextBlock Text="Voucher Tersisa" FontWeight="Bold" FontSize="20" Margin="0 5"/>
                 <Border Background="#04444D" Height="60" Width="222" CornerRadius="10">
                     <Grid>
                         <TextBlock Text="{Binding DisplayDayCounter}" Foreground="#F5F2EB" FontSize="42" FontWeight="Bold" VerticalAlignment="Top" Margin="20,0,152,0" TextAlignment="Center"/>
-                        <TextBlock Text="Hari" Foreground="#f5f2eb" FontSize="24" FontWeight="SemiBold" Margin="84,0,93,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Voucher" Foreground="#f5f2eb" FontSize="24" FontWeight="SemiBold" Margin="84,0,43,0" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
             </StackPanel>

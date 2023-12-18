@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TrashTrackProjectV2.Model;
+using System.IO;
 
 namespace TrashTrackProjectV2.View
 {
@@ -20,9 +22,18 @@ namespace TrashTrackProjectV2.View
     /// </summary>
     public partial class Berlangganan : UserControl
     {
+        string userID = File.ReadAllText(@"jwt.json");
+
         public Berlangganan()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            subscription subscription = new subscription();
+            subscription.AddVoucher(userID, 8);
+            MessageBox.Show("Berhasil Menambahkan 8 Voucher");
         }
     }
 }

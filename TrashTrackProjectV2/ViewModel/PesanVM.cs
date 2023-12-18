@@ -10,7 +10,7 @@ namespace TrashTrackProjectV2.ViewModel
     class PesanVM : Utilities.ViewModelBase
     {
         public readonly PageModel _pageModel;
-        public int DisplaySlotPaket
+        public long DisplaySlotPaket
         {
             get { return _pageModel.slotPaketA; }
             set
@@ -22,8 +22,9 @@ namespace TrashTrackProjectV2.ViewModel
 
         public PesanVM()
         {
+            subscription subscription = new subscription();
             _pageModel = new PageModel();
-            DisplaySlotPaket = 3;
+            DisplaySlotPaket = subscription.GetVoucherValue();
         }
 
     }

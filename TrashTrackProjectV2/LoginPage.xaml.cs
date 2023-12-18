@@ -77,10 +77,10 @@ namespace TrashTrackProjectV2
                     switch (loginResult)
                     {
                         case LoginResult.Success:
+                            user.createJWT(user.getUserID(email));
                             MainWindow main = new MainWindow();
                             main.Show();
                             this.Close();
-                            // Lakukan tindakan setelah login berhasil
                             break;
 
                         case LoginResult.EmailNotFound:

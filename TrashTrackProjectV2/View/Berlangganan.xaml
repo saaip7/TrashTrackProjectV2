@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="622"
              Style="{StaticResource Page_Style}">
+              
 
     <UserControl.DataContext>
         <vm:BerlanggananVM/>
@@ -19,16 +20,16 @@
                 <Border Margin="0 20">
                     <StackPanel>
                         <Grid>
-                            <Border Background="#04444D" Height="217" Width="140" Margin="60,0,422,0" CornerRadius="10">
+                            <Border ContentElement.MouseLeftButtonDown="Button_Click" Background="#04444D" Height="217" Width="140" Margin="60,0,422,0" CornerRadius="10">
                                 <StackPanel>
                                     <TextBlock Text="Paket Basic" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" Margin="0 10"/>
                                     <Image Source="/img/logo a.png" Height="122"/>
                                     <Grid>
-                                        <TextBlock Text="Hari Tersedia:" FontSize="15" FontWeight="SemiBold" Foreground="White" Margin="15,0,30,0" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding DisplayDayPaket}" FontSize="15" Foreground="White" VerticalAlignment="Center" Margin="110,0,10,0" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Voucher :" FontSize="15" FontWeight="SemiBold" Foreground="White" Margin="15,0,30,0" VerticalAlignment="Top"/>
+                                        <TextBlock Text="{Binding DisplayDayPaket}" FontSize="15" Foreground="White" VerticalAlignment="Center" Margin="93,0,27,0" FontWeight="SemiBold"/>
                                     </Grid>
                                 </StackPanel>
-                            </Border>
+                                </Border>
                             <Border Background="#04444D" Height="217" Width="140" CornerRadius="10"/>
                             <Border Background="#04444D" Height="217" Width="140" Margin="422,0,60,0" CornerRadius="10"/>
                         </Grid>

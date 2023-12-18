@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using TrashTrackProjectV2.Model;
+using TrashTrackProjectV2.Utilities;
+using TrashTrackProjectV2.View;
 
 namespace TrashTrackProjectV2.ViewModel
 {
@@ -22,8 +26,11 @@ namespace TrashTrackProjectV2.ViewModel
 
         public BerlanggananVM()
         {
+
             _pageModel = new PageModel();
-            DisplayDayPaket = 31;
+            DisplayDayPaket = 8;
+           
         }
+     
     }
 }

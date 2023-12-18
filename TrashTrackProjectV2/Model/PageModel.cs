@@ -8,12 +8,13 @@ namespace TrashTrackProjectV2.Model
 {
     public class PageModel
     {
-        public int dayCounter { get; set; }
+        public long voucherCounter { get; set; }
         public int dayPaketA { get; set; }
         public string nama { get; set; }
         public bool RiwayatOn { get; set; }
-        public int slotPaketA { get; set; }
+        public long slotPaketA { get; set; }
 
 
     }
+    
 }
