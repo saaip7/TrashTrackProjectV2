@@ -228,6 +228,38 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="buttonMain3" TargetType="Button">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="0 20 0 0"/>
+        <Setter Property="Background" Value="#003239"/>
+        <Setter Property="Foreground" Value="#F5F2EB"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="#F5F2EB" BorderThickness="0.5" CornerRadius="3" Padding="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#F5F2EB"/>
+                <Setter Property="Background" Value="#09616E"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Foreground" Value="#F5F2EB"/>
+                <Setter Property="Background" Value="#003239"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
     <Style x:Key="buttonYellow" TargetType="Button">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontFamily" Value="Inter"/>
