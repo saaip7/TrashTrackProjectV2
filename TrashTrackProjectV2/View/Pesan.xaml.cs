@@ -17,6 +17,8 @@ using Mapsui;
 using Mapsui.Styles;
 using System.IO;
 using Mapsui.Layers;
+using Mapsui.Extensions;
+using Mapsui.Projections;
 
 
 namespace TrashTrackProjectV2.View
@@ -59,6 +61,30 @@ namespace TrashTrackProjectV2.View
                 return bitmapId;
             }
 
+        }
+
+        private void MapRBUp(object sender, MouseButtonEventArgs e)
+        {
+            //menghapus pin yang sudah ada
+            var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+            if (pinLayer != null)
+            {
+                MapControl.Map.Layers.Remove(pinLayer);
+            }
+            var screenPosition = e.GetPosition(MapControl);//lokasi relatif pada layar
+            var worldPosition = MapControl.Map.Navigator.Viewport.ScreenToWorld(screenPosition.X, screenPosition.Y);//lokasi pada map(EPSG 3857)
+            //deklarasi pin
+            var pointFeature = new PointFeature(worldPosition.X, worldPosition.Y)
+            {
+                Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
+            };
+            //penambahan pin ke map
+            var layer = new MemoryLayer() { Name = "PinLayer" };
+            layer.Features = new List<PointFeature> { pointFeature };
+            layer.Style = null;
+            MapControl.Map.Layers.Add(layer);
+            var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
+            MessageBox.Show("Koordinat X: " + Convert.ToString(pinLonLat.X) + ", Koordinat Y: " + Convert.ToString(pinLonLat.Y));
         }
     }
 }

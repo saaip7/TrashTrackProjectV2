@@ -23,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="img\PinMap.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Content Include="img\PinMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

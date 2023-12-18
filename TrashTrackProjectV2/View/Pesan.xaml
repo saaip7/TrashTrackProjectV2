@@ -21,7 +21,7 @@
         <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
             <StackPanel>
                 <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
-                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" />
+                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
                 <Grid>
                     <Button Content="Pesan Tukang Sampah" Style="{StaticResource buttonMain2}" Margin="62,20,360,0" Width="200"/>
                     <TextBlock Text="Jatah Minggu Ini: " FontSize="18" FontWeight="Bold" Margin="393,15,80,30" Foreground="#1D1D21"/>
