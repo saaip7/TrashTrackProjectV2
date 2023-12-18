@@ -93,7 +93,8 @@
             </Grid>
 
         </Grid>
-
+        
+        <Rectangle Fill="Transparent" Margin="233,0,0,557" MouseDown="Rectangle_MouseDown" />
         <Image Source="/img/crossClose.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose}"/>
 
     </Grid>

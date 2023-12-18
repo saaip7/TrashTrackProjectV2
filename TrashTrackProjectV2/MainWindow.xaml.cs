@@ -36,5 +36,13 @@ namespace TrashTrackProjectV2
             loginPage.Show();
             this.Close();
         }
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
     }
 }
