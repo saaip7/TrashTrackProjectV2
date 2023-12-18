@@ -39,62 +39,104 @@ namespace TrashTrackProjectV2
 
         private void textUsername_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            txtUsername.Focus();
         }
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
+            {
+                textUsername.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textUsername.Visibility = Visibility.Visible;
+            }
         }
 
         private void textNama_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            txtNama.Focus();
         }
 
-        private void txtNama_PasswordChanged(object sender, RoutedEventArgs e)
+        private void txtNama_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtNama.Text) && txtNama.Text.Length > 0)
+            {
+                textNama.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textNama.Visibility = Visibility.Visible;
+            }
         }
 
         private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            txtEmail.Focus();
         }
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
+            {
+                textEmail.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textEmail.Visibility = Visibility.Visible;
+            }
         }
 
         private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            txtPassword.Focus();
         }
 
         private void txtPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtPassword.Text) && txtPassword.Text.Length > 0)
+            {
+                textPassword.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textPassword.Visibility = Visibility.Visible;
+            }
         }
 
         private void textNomorTelp_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            txtNoTelp.Focus();
         }
 
         private void txtNoTelp_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtNoTelp.Text) && txtNoTelp.Text.Length > 0)
+            {
+                textNomorTelp.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textNomorTelp.Visibility = Visibility.Visible;
+            }
         }
 
         private void textAlamat_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            txtAlamat.Focus();
         }
 
         private void txtAlamat_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtAlamat.Text) && txtAlamat.Text.Length > 0)
+            {
+                textAlamat.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textAlamat.Visibility = Visibility.Visible;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -103,7 +145,7 @@ namespace TrashTrackProjectV2
 
             // Ambil data dari antarmuka pengguna
             string username = txtUsername.Text;
-            string nama = txtNama.Password.ToString();
+            string nama = txtNama.Text;
             string email = txtEmail.Text;
             string password = txtPassword.Text;
             string notelp = txtNoTelp.Text;
@@ -134,6 +176,7 @@ namespace TrashTrackProjectV2
             }
         }
 
+       
     }
 
 
