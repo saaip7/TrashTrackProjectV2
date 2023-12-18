@@ -53,7 +53,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/img/emailBig.png" Width="20" Height="20" Margin="10 0"/>
+                        <Image Source="/img/user2.png" Width="20" Height="20" Margin="10 0"/>
                         <TextBlock x:Name="textUsername"  Text="Username" Foreground="#1D1D21" 
                                    FontSize="13" 
                                    FontFamily="Inter"
@@ -73,7 +73,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/img/padlock.png" Width="18" Height="18" Margin="10 0"/>
+                        <Image Source="/img/user2.png" Width="20" Height="20" Margin="10 0"/>
                         <TextBlock x:Name="textNama"  Text="Nama" Foreground="#1D1D21" 
                                    FontSize="13" 
                                    FontFamily="Inter"
@@ -113,7 +113,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/img/emailBig.png" Width="20" Height="20" Margin="10 0"/>
+                        <Image Source="/img/padlock.png" Width="20" Height="20" Margin="10 0"/>
                         <TextBlock x:Name="textPassword"  Text="Password" Foreground="#1D1D21" 
                                     FontSize="13" 
                                     FontFamily="Inter"
@@ -133,7 +133,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/img/emailBig.png" Width="20" Height="20" Margin="10 0"/>
+                        <Image Source="/img/call.png" Width="20" Height="18" Margin="10 0"/>
                         <TextBlock x:Name="textNomorTelp"  Text="Nomor Telepon" Foreground="#1D1D21" 
                                     FontSize="13" 
                                     FontFamily="Inter"
@@ -153,7 +153,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="/img/emailBig.png" Width="20" Height="20" Margin="10 0"/>
+                        <Image Source="/img/pinn.png" Width="20" Height="20" Margin="10 0"/>
                         <TextBlock x:Name="textAlamat"  Text="Alamat" Foreground="#1D1D21" 
                                     FontSize="13" 
                                     FontFamily="Inter"
