@@ -21,6 +21,7 @@
     <None Remove="img\PinMap.png" />
     <None Remove="img\pinn.png" />
     <None Remove="img\riwayat.png" />
+    <None Remove="img\shutdown_def.png" />
     <None Remove="img\user2.png" />
   </ItemGroup>
 
@@ -48,6 +49,7 @@
     <Resource Include="img\pesan.png" />
     <Resource Include="img\pinn.png" />
     <Resource Include="img\riwayat.png" />
+    <Resource Include="img\shutdown_def.png" />
     <Resource Include="img\user2.png" />
   </ItemGroup>
 
