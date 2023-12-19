@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
+using System.IO;
 using TrashTrackProjectV2.Model;
 using static TrashTrackProjectV2.Model.User;
 
@@ -71,6 +72,7 @@ namespace TrashTrackProjectV2
                 {
                     string email = txtEmail.Text;
                     string password = txtPassword.Password.ToString();
+                    File.WriteAllText(@"jwt.json", string.Empty);
 
                     LoginResult loginResult = user.IsValidUser(email, password);
 
