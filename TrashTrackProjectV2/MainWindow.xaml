@@ -55,7 +55,7 @@
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding StatusCommand}">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding RiwayatCommand}">
                         <Grid>
                             <Image Source="img/riwayat.png" Style="{StaticResource Image_Style}" />
                             <TextBlock Text="Status Pesanan" Style="{StaticResource Text_Style}" />
