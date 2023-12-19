@@ -11,7 +11,7 @@ namespace TrashTrackProjectV2.ViewModel
     class BerandaVM : Utilities.ViewModelBase
     {
         public readonly PageModel _pageModel;
-        public long DisplayDayCounter
+        public long DisplayVoucher
         {
             get { return _pageModel.voucherCounter; }
             set
@@ -23,9 +23,9 @@ namespace TrashTrackProjectV2.ViewModel
 
         public BerandaVM()
         {
-            subscription subscription = new subscription();
             _pageModel = new PageModel();
-            DisplayDayCounter = subscription.GetVoucherValue();
+            subscription subscription = new subscription();
+            DisplayVoucher = subscription.GetVoucherValue();
         }
     }
 }
