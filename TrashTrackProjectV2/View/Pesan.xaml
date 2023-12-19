@@ -16,48 +16,67 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.75*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Border Background="#F5F2EB" CornerRadius="0, 15, 0, 0">
             <StackPanel>
-                <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
-                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
                 <Grid>
-                    <Button Content="Pesan Tukang Sampah" Style="{StaticResource buttonMain2}" Margin="62,20,360,0" Width="200"/>
-                    <TextBlock Text="Voucher Tersisa: " FontSize="18" FontWeight="Bold" Margin="393,15,80,30" Foreground="#1D1D21"/>
-                    <TextBlock Text="{Binding DisplayVoucher}" Foreground="#1D1D21" FontSize="18" FontWeight="Bold" Margin="548,15,48,30" RenderTransformOrigin="0.5,0.5"/>
+                    <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60,15,461,15"/>
+                    <TextBlock Text="Voucher Tersisa: " FontSize="16" FontWeight="SemiBold" Margin="414,30,59,19" Foreground="#1D1D21"/>
+                    <TextBlock Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
+                </Grid>
+
+                <Grid>
+                    <TextBlock Text="nyoh isi"/>
+                </Grid>
+
+                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
+
+                <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+                    <StackPanel>
+                        <TextBlock Text="Status Pesanan" FontWeight="Bold" FontSize="20" Height="29" Foreground="#1D1D21" Margin="60 15"/>
+                        <Border Background="#E4E1DC" Width="499" Height="110" CornerRadius="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="2.5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!--// Baris 1 //-->
+                                <TextBlock Text="Nama Petugas" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center"/>
+
+                                <!--// Baris 2 //-->
+                                <TextBlock Text="Alamat Tujuan" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBlock x:Name="txtKoor" Text="coba ini isi koordinatmu" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
+
+                                <!--// Baris 3 //-->
+                                <TextBlock Text="Estimasti Tiba" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBlock Text="di isi estimate" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+
+                <Grid Margin="0 10">
+                    <Button x:Name="PesenBtn" Content="Pesan Tukang Sampah" Style="{StaticResource buttonMain2}" Margin="61,14,395,15" Width="166" Height="38" Click="PesenBtn_Click"/>
+                    <Button x:Name="SelesaiBtn" Content="Pesanan Selesai" Style="{StaticResource buttonMain2}" Margin="61,14,395,15" Width="166" Height="38" Click="SelesaiBtn_Click" Visibility="Hidden"/>
                 </Grid>
             </StackPanel>
         </Border>
 
-        <Border Background="#F5F2EB" CornerRadius="0, 0, 15, 0" Grid.Row="1">
-            <StackPanel>
-                <TextBlock Text="OTW " FontWeight="Bold" FontSize="20"  Foreground="#1D1D21" Margin="60 10"/>
-                <Border Background="#E4E1DC" Width="499" Height="131" CornerRadius="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="2.5*"/>
-                        </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <!--// Baris 1 //-->
-                        <TextBlock Text="Nama" FontSize="16" FontWeight="SemiBold" Foreground="#1D1D21"/>
-                        <TextBlock Text=":" FontSize="16" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1"/>
-                        <TextBlock Text="{Binding DisplayNama}" FontSize="16" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2"/>
-                    </Grid>
-                </Border>
-            </StackPanel>
-
-        </Border>
     </Grid>
 </UserControl>

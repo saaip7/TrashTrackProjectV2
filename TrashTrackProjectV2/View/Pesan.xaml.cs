@@ -108,5 +108,17 @@ namespace TrashTrackProjectV2.View
             }
             return null;
         }
+
+        private void PesenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PesenBtn.Visibility = Visibility.Hidden;
+            SelesaiBtn.Visibility = Visibility.Visible;
+        }
+
+        private void SelesaiBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SelesaiBtn.Visibility = Visibility.Hidden;
+            PesenBtn.Visibility = Visibility.Visible;
+        }
     }
 }
