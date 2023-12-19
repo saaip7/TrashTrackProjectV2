@@ -89,7 +89,7 @@ namespace TrashTrackProjectV2.View
             {
                 string latitudeString = latitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 string longitudeString = longitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                string url = "https://api.geoapify.com/v1/geocode/reverse?lat=" + latitudeString + "&lon=" + longitudeString + "&format=json&apiKey=" + apiKey;
+                string url = "https://geocode.maps.co/reverse?lat=" + latitudeString + "&lon=" + longitudeString;
                 var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
 
@@ -100,7 +100,7 @@ namespace TrashTrackProjectV2.View
         }
         public string ExtractFormattedAddress(string json)
         {
-            int startIndex = json.IndexOf("\\\"formatted\\\"") + 16; // cari kata "formatted", tambahkan 13 untuk melewati ":"
+            int startIndex = json.IndexOf("\\\"display_name\\\"") + 19; // cari kata "formatted", tambahkan 13 untuk melewati ":"
             int endIndex = json.IndexOf("\\\"", startIndex); // cari tanda kutip pertama setelah startIndex
             if (startIndex > 12 && endIndex > startIndex)
             {
