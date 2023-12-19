@@ -23,6 +23,7 @@ namespace TrashTrackProjectV2.View
         public Riwayat()
         {
             InitializeComponent();
+            txtKoor.Text = "X: " + Pesan.PinCoordinate.X +", Y: " + Pesan.PinCoordinate.Y;
         }
     }
 }
