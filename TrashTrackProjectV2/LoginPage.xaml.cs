@@ -65,6 +65,8 @@ namespace TrashTrackProjectV2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            File.WriteAllText(@"jwt.json", string.Empty);
+
             User user = new User();
             if (!string.IsNullOrEmpty(txtEmail.Text) && txtEmail.Text.Length > 0)
             {
@@ -72,8 +74,6 @@ namespace TrashTrackProjectV2
                 {
                     string email = txtEmail.Text;
                     string password = txtPassword.Password.ToString();
-                    File.WriteAllText(@"jwt.json", string.Empty);
-
                     LoginResult loginResult = user.IsValidUser(email, password);
 
                     switch (loginResult)
