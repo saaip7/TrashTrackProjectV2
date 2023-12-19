@@ -19,6 +19,10 @@ using System.IO;
 using Mapsui.Layers;
 using Mapsui.Extensions;
 using Mapsui.Projections;
+using System.Net.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 
 namespace TrashTrackProjectV2.View
@@ -63,7 +67,7 @@ namespace TrashTrackProjectV2.View
 
         }
 
-        private void MapRBUp(object sender, MouseButtonEventArgs e)
+        private async void MapRBUp(object sender, MouseButtonEventArgs e)
         {
             //menghapus pin yang sudah ada
             var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
@@ -84,7 +88,36 @@ namespace TrashTrackProjectV2.View
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
             var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
-            MessageBox.Show("Koordinat X: " + Convert.ToString(pinLonLat.X) + ", Koordinat Y: " + Convert.ToString(pinLonLat.Y));
+            string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
+            string formattedAddress = ExtractFormattedAddress(address);
+            MessageBox.Show(address);
+
+
+        }
+        public async Task<string> GetAddressFromCoordinates(double latitude, double longitude, string apiKey)
+        {
+            using (var client = new HttpClient())
+            {
+                string latitudeString = latitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                string longitudeString = longitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                string url = "https://api.geoapify.com/v1/geocode/reverse?lat=" + latitudeString + "&lon=" + longitudeString + "&format=json&apiKey=" + apiKey;
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                string jsonString = JsonConvert.SerializeObject(result);
+
+                return jsonString;
+            }
+        }
+        public string ExtractFormattedAddress(string json)
+        {
+            int startIndex = json.IndexOf("\"formatted\"") + 13; // cari kata "formatted", tambahkan 13 untuk melewati ":"
+            int endIndex = json.IndexOf("\"", startIndex); // cari tanda kutip pertama setelah startIndex
+            if (startIndex > 12 && endIndex > startIndex)
+            {
+                return json.Substring(startIndex, endIndex - startIndex); // ekstrak substring antara startIndex dan endIndex
+            }
+            return null;
         }
     }
 }
