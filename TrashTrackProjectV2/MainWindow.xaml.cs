@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mapsui;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TrashTrackProjectV2.View;
 
 namespace TrashTrackProjectV2
 {
@@ -35,6 +37,7 @@ namespace TrashTrackProjectV2
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
             this.Close();
+            Pesan.PinCoordinate = new MPoint(0,0);
         }
 
         private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
