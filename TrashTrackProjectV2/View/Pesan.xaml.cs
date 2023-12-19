@@ -23,6 +23,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using TrashTrackProjectV2.Model;
 
 
 namespace TrashTrackProjectV2.View
@@ -32,6 +33,7 @@ namespace TrashTrackProjectV2.View
     /// </summary>
     public partial class Pesan : UserControl
     {
+        public static MPoint PinCoordinate = new MPoint(0, 0);
         public Pesan()
         {
             InitializeComponent();
@@ -88,11 +90,10 @@ namespace TrashTrackProjectV2.View
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
             var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
+            PinCoordinate = pinLonLat;
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
             MessageBox.Show(address);
-
-
         }
         public async Task<string> GetAddressFromCoordinates(double latitude, double longitude, string apiKey)
         {
