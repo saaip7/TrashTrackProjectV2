@@ -42,18 +42,6 @@ namespace TrashTrackProjectV2.View
             //Map Borders
             MapControl.Map.Navigator.OverridePanBounds = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
             MapControl.Map.Navigator.OverrideZoomBounds = new MMinMax(0, 200);
-
-            // Membuat Pin lokasi TPA
-            var pointFeature = new PointFeature(12250759.8997, -838054.2427)
-            {
-                Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
-            };
-
-            // Menambahkan PointFeature ke layer pada peta
-            var layer = new MemoryLayer();
-            layer.Features = new List<PointFeature> { pointFeature };
-            layer.Style = null;
-            MapControl.Map.Layers.Add(layer);
         }
 
         //mendapat bitmap id dari gambar
@@ -93,7 +81,7 @@ namespace TrashTrackProjectV2.View
             PinCoordinate = pinLonLat;
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
-            MessageBox.Show(address);
+            MessageBox.Show(formattedAddress);
         }
         public async Task<string> GetAddressFromCoordinates(double latitude, double longitude, string apiKey)
         {
@@ -112,8 +100,8 @@ namespace TrashTrackProjectV2.View
         }
         public string ExtractFormattedAddress(string json)
         {
-            int startIndex = json.IndexOf("\"formatted\"") + 13; // cari kata "formatted", tambahkan 13 untuk melewati ":"
-            int endIndex = json.IndexOf("\"", startIndex); // cari tanda kutip pertama setelah startIndex
+            int startIndex = json.IndexOf("\\\"formatted\\\"") + 16; // cari kata "formatted", tambahkan 13 untuk melewati ":"
+            int endIndex = json.IndexOf("\\\"", startIndex); // cari tanda kutip pertama setelah startIndex
             if (startIndex > 12 && endIndex > startIndex)
             {
                 return json.Substring(startIndex, endIndex - startIndex); // ekstrak substring antara startIndex dan endIndex
