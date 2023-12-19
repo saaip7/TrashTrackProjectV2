@@ -24,8 +24,8 @@
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Nama" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="Nama" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
                         <TextBox x:Name="txtbName" Background="Transparent" IsReadOnly="True" BorderThickness="0" Text="{Binding userNama}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
@@ -38,8 +38,8 @@
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Username" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="Username" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
                         <TextBox x:Name="txtbUsername" Background="Transparent" IsReadOnly="True" BorderThickness="0" Text="{Binding userUsername}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
@@ -52,8 +52,8 @@
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Email" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="Email" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
                         <TextBox x:Name="txtbEmail" Background="Transparent" IsReadOnly="True" BorderThickness="0" Text="{Binding userEmail}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
@@ -66,8 +66,8 @@
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Nomor Telp" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="Nomor Telp" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
                         <TextBox x:Name="txtbNoTelp" Background="Transparent" IsReadOnly="True" BorderThickness="0" Text="{Binding userNoTelp}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
@@ -80,8 +80,8 @@
                             <ColumnDefinition Width="2.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Alamat" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
-                        <TextBlock Text=":" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
+                        <TextBlock Text="Alamat" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text=":" FontWeight="SemiBold" FontSize="16" Foreground="#1D1D21" Margin="10 0 0 0" VerticalAlignment="Center" Grid.Column="1"/>
                         <TextBox x:Name="txtbAlamat" Background="Transparent" IsReadOnly="True" BorderThickness="0" Text="{Binding userAlamat}" FontWeight="Bold" FontSize="16" Foreground="#1D1D21" Margin="0 0 10 0" Grid.Column="2" VerticalAlignment="Center"/>
                     </Grid>
                 </Border>
