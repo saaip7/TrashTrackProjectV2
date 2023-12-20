@@ -18,6 +18,8 @@
     <None Remove="img\logo a.png" />
     <None Remove="img\logo new.png" />
     <None Remove="img\padlock.png" />
+    <None Remove="img\paket\paket 1.png" />
+    <None Remove="img\paket\paket 1a.png" />
     <None Remove="img\pesan.png" />
     <None Remove="img\PinMap.png" />
     <None Remove="img\pinn.png" />
@@ -49,6 +51,8 @@
     <Resource Include="img\logo a.png" />
     <Resource Include="img\logo new.png" />
     <Resource Include="img\padlock.png" />
+    <Resource Include="img\paket\paket 1.png" />
+    <Resource Include="img\paket\paket 1a.png" />
     <Resource Include="img\pesan.png" />
     <Resource Include="img\pinn.png" />
     <Resource Include="img\riwayat.png" />
