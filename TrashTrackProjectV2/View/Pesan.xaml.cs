@@ -50,6 +50,16 @@ namespace TrashTrackProjectV2.View
             //Map Borders
             MapControl.Map.Navigator.OverridePanBounds = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
             MapControl.Map.Navigator.OverrideZoomBounds = new MMinMax(0, 200);
+            var coordinate = SphericalMercator.FromLonLat(PinCoordinate.X, PinCoordinate.Y);
+            var pointFeature = new PointFeature(coordinate.x, coordinate.y)
+            {
+                Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
+            };
+            //penambahan pin ke map
+            var layer = new MemoryLayer() { Name = "PinLayer" };
+            layer.Features = new List<PointFeature> { pointFeature };
+            layer.Style = null;
+            MapControl.Map.Layers.Add(layer);
         }
 
         //mendapat bitmap id dari gambar
@@ -278,7 +288,6 @@ namespace TrashTrackProjectV2.View
                             top += newButton.Height;
                         }
                     }
-                    
                 }
             }
         }
@@ -322,6 +331,7 @@ namespace TrashTrackProjectV2.View
         {
             txtLocationQuery.Clear();
             canvas.Children.Clear();
+            ImgX.Visibility = Visibility.Hidden;
         }
 
         private async void ClickSearch(object sender, MouseButtonEventArgs e)
@@ -391,6 +401,18 @@ namespace TrashTrackProjectV2.View
                         top += newButton.Height;
                     }
                 }
+            }
+        }
+
+        private void LocationKeyUp(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
+            {
+                ImgX.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ImgX.Visibility = Visibility.Hidden;
             }
         }
     }

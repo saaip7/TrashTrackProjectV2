@@ -27,7 +27,7 @@
                     <TextBlock Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
                 </Grid>
 
-                    <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False"/>
+                    <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp"/>
 
                     <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
 
@@ -75,7 +75,7 @@
             </StackPanel>
         </Border>
         <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="157" Margin="0,89,0,0" VerticalAlignment="Top" Width="622"/>
-        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="561,72,46,512" MouseUp="ClickX" />
+        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="561,72,46,512" MouseUp="ClickX" Visibility="Collapsed" />
         <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="581,72,26,512" MouseUp="ClickSearch"/>
     </Grid>
     
