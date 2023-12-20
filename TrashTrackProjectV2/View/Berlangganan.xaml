@@ -14,12 +14,18 @@
     </UserControl.DataContext>
 
     <Grid>
-        <!--// Backup //-->
-        <Border Visibility="Visible" Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
-            <StackPanel>
-                <TextBlock Text="Berlangganan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
-                <Border Margin="0 20">
-                    <StackPanel>
+        <!--// MAIN ATAS //-->
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel>
+                    <TextBlock Text="Berlangganan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
+                    <Border Margin="0 20">
                         <Grid>
                             <Border Background="#E4E1DC" Height="217" Width="140" Margin="60,0,422,0" CornerRadius="10">
                                 <StackPanel>
@@ -62,9 +68,17 @@
                                 </Grid>
                             </Border>
                         </Grid>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Saldo Anda" FontSize="24" FontWeight="Bold" Margin="60 20"/>
+                    <Border Background="#E4E1DC" Width="500" Height="180" CornerRadius="15">
+                        
+                    </Border>
+                </StackPanel>
+                
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

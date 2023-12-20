@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Background="#F5F2EB" CornerRadius="0, 15, 0, 0">
+        <Border Background="#F5F2EB" CornerRadius="0, 0, 15, 0">
             <StackPanel>
                 <Grid>
                     <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60,15,461,15"/>
