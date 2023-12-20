@@ -222,7 +222,6 @@ namespace TrashTrackProjectV2.View
                         MapControl.Map.Layers.Remove(pinLayer);
                     }
                     string result = await (GetCoordinatesFromAddress(txtLocationQuery.Text));
-                    MessageBox.Show(txtLocationQuery.Text);
                     if (result == "\"[]\"" && txtLocationQuery.Text != "")
                     {
                         Button newButton = new Button();
@@ -291,7 +290,6 @@ namespace TrashTrackProjectV2.View
                 MapControl.Map.Layers.Remove(pinLayer);
             }
             Button clickedButton = (Button)sender;
-            MessageBox.Show(AddressData[index]);
             double Lat = double.Parse(LatData[index], CultureInfo.InvariantCulture);
             double Lon = double.Parse(LonData[index], CultureInfo.InvariantCulture);
             PinCoordinate = new MPoint(Lon, Lat);
