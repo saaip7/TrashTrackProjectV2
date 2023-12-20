@@ -9,7 +9,7 @@
              d:DesignHeight="600" 
              d:DesignWidth="622"
              Style="{StaticResource Page_Style}">
-
+    
     <UserControl.DataContext>
         <vm:PesanVM/>
     </UserControl.DataContext>
@@ -27,11 +27,9 @@
                     <TextBlock Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
                 </Grid>
 
-                <Grid>
-                    <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown"/>
-                </Grid>
+                    <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False"/>
 
-                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
+                    <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
 
                 <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
                     <StackPanel>
@@ -77,7 +75,8 @@
             </StackPanel>
         </Border>
         <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="157" Margin="0,89,0,0" VerticalAlignment="Top" Width="622"/>
-        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="561,72,46,510" MouseUp="ClickX" />
+        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="561,72,46,512" MouseUp="ClickX" />
+        <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="581,72,26,512" MouseUp="ClickSearch"/>
     </Grid>
     
 </UserControl>

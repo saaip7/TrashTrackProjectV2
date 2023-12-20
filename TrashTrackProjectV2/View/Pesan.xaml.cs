@@ -323,5 +323,75 @@ namespace TrashTrackProjectV2.View
             txtLocationQuery.Clear();
             canvas.Children.Clear();
         }
+
+        private async void ClickSearch(object sender, MouseButtonEventArgs e)
+        {
+            canvas.Children.Clear();
+            if (txtLocationQuery.Text != null)
+            {
+                var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+                if (pinLayer != null)
+                {
+                    MapControl.Map.Layers.Remove(pinLayer);
+                }
+                string result = await (GetCoordinatesFromAddress(txtLocationQuery.Text));
+                if (result == "\"[]\"" && txtLocationQuery.Text != "")
+                {
+                    Button newButton = new Button();
+                    newButton.Content = "Lokasi tidak ditemukan, letakkan pin pada peta dengan klik kanan";
+                    newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+                    newButton.Width = 622;
+                    newButton.Height = 30;
+                    Canvas.SetTop(newButton, 0);
+                    Canvas.SetLeft(newButton, 0);
+                    canvas.Children.Add(newButton);
+                }
+                string[] formattedLat = new string[7];
+                string[] formattedLon = new string[7];
+                string[] formattedAddress = new string[7];
+                int i = 0, addressStartingIndex = 0, LonStartIndex = 0, LatStartIndex = 0;
+                do
+                {
+                    formattedLon[i] = ExtractLongitude(result, LonStartIndex);
+                    LonData[i] = formattedLon[i];
+                    formattedLat[i] = ExtractLatitude(result, LatStartIndex);
+                    LatData[i] = formattedLat[i];
+                    formattedAddress[i] = ExtractFormattedAddress(result, addressStartingIndex);
+                    AddressData[i] = formattedAddress[i];
+                    i++;
+                    LonStartIndex = result.IndexOf("\\\"lon\\\"", LonStartIndex) + 10;
+                    LatStartIndex = result.IndexOf("\\\"lat\\\"", LatStartIndex) + 10;
+                    addressStartingIndex = result.IndexOf("\\\"display_name\\\"", addressStartingIndex) + 19;
+
+                } while (formattedAddress[i - 1] != null && i < 6);
+                double top = 0;
+                for (i = 0; i < formattedAddress.Length; i++)
+                {
+                    string buttontext = formattedAddress[i];
+                    if (buttontext != null)
+                    {
+                        Button newButton = new Button();
+                        newButton.Content = buttontext;
+                        newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+                        newButton.Width = 622;
+                        newButton.Height = 30;
+
+                        // Menambahkan event handler untuk button
+                        int index = i; // Membuat salinan variabel indeks
+                        newButton.Click += (sender, e) => Button_Click(sender, e, index);
+
+                        // Menentukan posisi button
+                        Canvas.SetTop(newButton, top);
+                        Canvas.SetLeft(newButton, 0);
+
+                        // Menambahkan button ke dalam canvas
+                        canvas.Children.Add(newButton);
+
+                        // Mengatur posisi untuk button selanjutnya
+                        top += newButton.Height;
+                    }
+                }
+            }
+        }
     }
 }
