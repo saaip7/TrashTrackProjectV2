@@ -19,19 +19,24 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Background="#F5F2EB" CornerRadius="0, 0, 15, 0">
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
             <StackPanel>
                 <Grid>
                     <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60,15,461,15"/>
                     <TextBlock Text="Voucher Tersisa: " FontSize="16" FontWeight="SemiBold" Margin="414,30,59,19" Foreground="#1D1D21"/>
                     <TextBlock Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
                 </Grid>
+                <Border>
+                    <Grid Height="48">
+                        <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp" Margin="60 10" Height="20" BorderThickness="1.5" BorderBrush="#04444D"/>
+                        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="522,16,83,16" MouseUp="ClickX" Visibility="Collapsed" />
+                        <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="543,18,66,18" MouseUp="ClickSearch"/>
+                    </Grid>
+                </Border>
 
-                    <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp"/>
+                <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
 
-                    <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
-
-                <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+                <Border Background="#F5F2EB">
                     <StackPanel>
                         <TextBlock Text="Status Pesanan" FontWeight="Bold" FontSize="20" Height="29" Foreground="#1D1D21" Margin="60 15"/>
                         <Border Background="#E4E1DC" Width="499" Height="110" CornerRadius="10">
@@ -75,8 +80,6 @@
             </StackPanel>
         </Border>
         <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="157" Margin="0,89,0,0" VerticalAlignment="Top" Width="622"/>
-        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="561,72,46,512" MouseUp="ClickX" Visibility="Collapsed" />
-        <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="581,72,26,512" MouseUp="ClickSearch"/>
     </Grid>
     
 </UserControl>

@@ -19,7 +19,7 @@
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.2*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
@@ -73,7 +73,7 @@
 
                 <StackPanel Grid.Row="1">
                     <TextBlock Text="Saldo Anda" FontSize="24" FontWeight="Bold" Margin="60 20"/>
-                    <Border Background="#E4E1DC" Width="500" Height="180" CornerRadius="15">
+                    <Border Background="#E4E1DC" Width="500" Height="150" CornerRadius="15">
                         
                     </Border>
                 </StackPanel>
