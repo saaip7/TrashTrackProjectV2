@@ -413,6 +413,7 @@ namespace TrashTrackProjectV2.View
             else
             {
                 ImgX.Visibility = Visibility.Hidden;
+                canvas.Children.Clear();
             }
         }
     }
