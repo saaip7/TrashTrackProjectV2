@@ -28,7 +28,7 @@
                 </Grid>
 
                 <Grid>
-                    <TextBlock Text="nyoh isi"/>
+                    <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown"/>
                 </Grid>
 
                 <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
@@ -76,7 +76,8 @@
                 </Grid>
             </StackPanel>
         </Border>
-
-
+        <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="157" Margin="0,89,0,0" VerticalAlignment="Top" Width="622"/>
+        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="561,72,46,510" MouseUp="ClickX" />
     </Grid>
+    
 </UserControl>
