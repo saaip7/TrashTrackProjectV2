@@ -58,6 +58,11 @@ namespace TrashTrackProjectV2.View
             //Map Borders
             MapControl.Map.Navigator.OverridePanBounds = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
             MapControl.Map.Navigator.OverrideZoomBounds = new MMinMax(0, 200);
+            if (pesan.isPesanActive())
+            {
+                PinCoordinate.X = pesan.GetPesanActive().latitude;
+                PinCoordinate.Y = pesan.GetPesanActive().longitude;
+            }
             var coordinate = SphericalMercator.FromLonLat(PinCoordinate.X, PinCoordinate.Y);
             var pointFeature = new PointFeature(coordinate.x, coordinate.y)
             {
@@ -68,6 +73,7 @@ namespace TrashTrackProjectV2.View
             layer.Features = new List<PointFeature> { pointFeature };
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
+            MapControl.Map.Refresh();
             txtKoor.Text = AlamatMap;
             if (txtKoor.Text.Length > 51)
             {
@@ -94,51 +100,58 @@ namespace TrashTrackProjectV2.View
 
         private async void MapRBUp(object sender, MouseButtonEventArgs e)
         {
-            //menghapus pin yang sudah ada
-            var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
-            if (pinLayer != null)
+            if (!pesan.isPesanActive())
             {
-                MapControl.Map.Layers.Remove(pinLayer);
-            }
-            var screenPosition = e.GetPosition(MapControl);//lokasi relatif pada layar
-            var worldPosition = MapControl.Map.Navigator.Viewport.ScreenToWorld(screenPosition.X, screenPosition.Y);//lokasi pada map(EPSG 3857)
-            //deklarasi pin
-            var pointFeature = new PointFeature(worldPosition.X, worldPosition.Y)
-            {
-                Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
-            };
-            //penambahan pin ke map
-            var layer = new MemoryLayer() { Name = "PinLayer" };
-            layer.Features = new List<PointFeature> { pointFeature };
-            layer.Style = null;
-            MapControl.Map.Layers.Add(layer);
-            MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
-            if (bbox.Contains(worldPosition))
-            {
-                var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
-                PinCoordinate = pinLonLat;
-                string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
-                string formattedAddress = ExtractFormattedAddress(address);
-                pesan.alamat = formattedAddress;
-                AlamatMap = formattedAddress;
-                txtKoor.Text = AlamatMap;
-                if (txtKoor.Text.Length > 51)
+                //menghapus pin yang sudah ada
+                var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+                if (pinLayer != null)
                 {
-                    BtnLocationExpand.Visibility = Visibility.Visible;
+                    MapControl.Map.Layers.Remove(pinLayer);
+                }
+                var screenPosition = e.GetPosition(MapControl);//lokasi relatif pada layar
+                var worldPosition = MapControl.Map.Navigator.Viewport.ScreenToWorld(screenPosition.X, screenPosition.Y);//lokasi pada map(EPSG 3857)
+                                                                                                                        //deklarasi pin
+                var pointFeature = new PointFeature(worldPosition.X, worldPosition.Y)
+                {
+                    Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
+                };
+                //penambahan pin ke map
+                var layer = new MemoryLayer() { Name = "PinLayer" };
+                layer.Features = new List<PointFeature> { pointFeature };
+                layer.Style = null;
+                MapControl.Map.Layers.Add(layer);
+                MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
+                if (bbox.Contains(worldPosition))
+                {
+                    var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
+                    PinCoordinate = pinLonLat;
+                    string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
+                    string formattedAddress = ExtractFormattedAddress(address);
+                    pesan.alamat = formattedAddress;
+                    AlamatMap = formattedAddress;
+                    txtKoor.Text = AlamatMap;
+                    if (txtKoor.Text.Length > 51)
+                    {
+                        BtnLocationExpand.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        BtnLocationExpand.Visibility = Visibility.Collapsed;
+                    }
+                    MessageBox.Show(formattedAddress);
+                    canvas.Children.Clear();
                 }
                 else
                 {
-                    BtnLocationExpand.Visibility = Visibility.Collapsed;
+                    MessageBox.Show("Lokasi berada di luar jangkauan");
+                    MapControl.Map.Layers.Remove(layer);
+                    AlamatMap = new string(string.Empty);
+                    txtKoor.Text = AlamatMap;
                 }
-                MessageBox.Show(formattedAddress);
-                canvas.Children.Clear();
             }
-            else
+            else if (pesan.isPesanActive());
             {
-                MessageBox.Show("Lokasi berada di luar jangkauan");
-                MapControl.Map.Layers.Remove(layer);
-                AlamatMap = new string(string.Empty);
-                txtKoor.Text = AlamatMap;
+                MessageBox.Show("Pesanan sedang berlangsung. Mohon tunggu hingga pesanan selesai");
             }
         }
         public async Task<string> GetAddressFromCoordinates(double latitude, double longitude, string apiKey)
@@ -262,24 +275,25 @@ namespace TrashTrackProjectV2.View
                     MessageBox.Show("Lokasi belum ditentukan");
                     return;
                 }
-                else { 
-                subscription.AddVoucher();
-                pesan.namaPetugas = NamaPetugas();
-                txtNama.Text = pesan.namaPetugas;
-                PesenBtn.Visibility = Visibility.Hidden;
-                SelesaiBtn.Visibility = Visibility.Visible;
-                //mendapatkan koordinat dari pin
-                pesan.latitude = PinCoordinate.X;
-                pesan.longitude = PinCoordinate.Y;
-                // Mendapatkan tanggal dan waktu saat ini
-                DateTime currentTime = DateTime.Now;
-                // Menambahkan satu jam ke tanggal dan waktu saat ini
-                estimasiWaktu = currentTime.AddHours(1);
-                pesan.estimasi = estimasiWaktu.ToString();
-                txtWaktu.Text = estimasiWaktu.ToString(@"HH\:mm\:ss");
-                lblVoucher.Text = voucher.ToString();
-                insertPesan();
-            }
+                else
+                {
+                    subscription.AddVoucher();
+                    pesan.namaPetugas = NamaPetugas();
+                    txtNama.Text = pesan.namaPetugas;
+                    PesenBtn.Visibility = Visibility.Hidden;
+                    SelesaiBtn.Visibility = Visibility.Visible;
+                    //mendapatkan koordinat dari pin
+                    pesan.latitude = PinCoordinate.X;
+                    pesan.longitude = PinCoordinate.Y;
+                    // Mendapatkan tanggal dan waktu saat ini
+                    DateTime currentTime = DateTime.Now;
+                    // Menambahkan satu jam ke tanggal dan waktu saat ini
+                    estimasiWaktu = currentTime.AddHours(1);
+                    pesan.estimasi = estimasiWaktu.ToString();
+                    txtWaktu.Text = estimasiWaktu.ToString(@"HH\:mm\:ss");
+                    lblVoucher.Text = voucher.ToString();
+                    insertPesan();    
+                }
             }
         }
 
@@ -295,6 +309,11 @@ namespace TrashTrackProjectV2.View
             txtKoor.Text = "";
             AlamatMap = new string(string.Empty);
             BtnLocationExpand.Visibility = Visibility.Collapsed;
+            var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+            if (pinLayer != null)
+            {
+                MapControl.Map.Layers.Remove(pinLayer);
+            }
             MessageBox.Show("Terimakasih sudah menggunakan jasa kami :D");
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
@@ -429,7 +448,7 @@ namespace TrashTrackProjectV2.View
         }
         private async void LocationKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter && !pesan.isPesanActive())
             {
                 canvas.Children.Clear();
                 if (txtLocationQuery.Text != null)
@@ -499,6 +518,11 @@ namespace TrashTrackProjectV2.View
                         }
                     }
                 }
+            }
+            else if (e.Key == Key.Enter && pesan.isPesanActive())
+            {
+
+                MessageBox.Show("Pesanan sedang berlangsung. Mohon tunggu hingga pesanan selesai");
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e, int index)
