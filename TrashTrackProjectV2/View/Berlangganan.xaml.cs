@@ -29,11 +29,25 @@ namespace TrashTrackProjectV2.View
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_click_basic(object sender, RoutedEventArgs e)
         {
             basicVoucher basicVoucher = new basicVoucher();
             basicVoucher.AddVoucher();
             MessageBox.Show($"Berhasil Menambahkan {basicVoucher.voucherValue()} Voucher");
+        }
+
+        private void btn_click_standart(object sender, RoutedEventArgs e)
+        {
+            mediumVoucher medium = new mediumVoucher();
+            subscription.AddVoucher();
+            MessageBox.Show("Berhasil Menambahkan {medium.voucherValue()} Voucher");
+        }
+
+        private void btn_click_vip(object sender, RoutedEventArgs e)
+        {
+            premiumVoucher premium = new premiumVoucher();
+            subscription.AddVoucher();
+            MessageBox.Show("Berhasil Menambahkan {premium.voucherValue()} Voucher");
         }
     }
 }

@@ -7,35 +7,102 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="622"
              Style="{StaticResource Page_Style}">
-              
+
 
     <UserControl.DataContext>
         <vm:BerlanggananVM/>
     </UserControl.DataContext>
 
     <Grid>
+        <!--// MAIN ATAS //-->
         <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
-            <StackPanel>
-                <TextBlock Text="Berlangganan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
-                <Border Margin="0 20">
-                    <StackPanel>
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Berlangganan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60 15"/>
+                    <Border Margin="0 20">
                         <Grid>
-                            <Border ContentElement.MouseLeftButtonDown="Button_Click" Background="#04444D" Height="217" Width="140" Margin="60,0,422,0" CornerRadius="10">
+                            <Border Background="#E4E1DC" Height="217" Width="140" Margin="60,0,422,0" CornerRadius="10">
                                 <StackPanel>
-                                    <TextBlock Text="Paket Basic" FontSize="18" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" Margin="0 10"/>
-                                    <Image Source="/img/logo a.png" Height="122"/>
                                     <Grid>
-                                        <TextBlock Text="Voucher :" FontSize="15" FontWeight="SemiBold" Foreground="White" Margin="15,0,30,0" VerticalAlignment="Top"/>
-                                        <TextBlock Text="{Binding DisplayDayPaket}" FontSize="15" Foreground="White" VerticalAlignment="Center" Margin="93,0,27,0" FontWeight="SemiBold"/>
+                                        <Image Source="/img/paket/paket 1a.png"/>
+                                        <TextBlock Text="BASIC" FontWeight="Bold" FontSize="18" Foreground="#F5F2EB" HorizontalAlignment="Center" Margin="0 10"/>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="3" FontSize="40" FontWeight="Bold" Foreground="#1D1D21" HorizontalAlignment="Center" Height="50"/>
+                                            <TextBlock Text="Voucher Setiap" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Pembelian" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Rp 30.000" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5"/>
+                                        </StackPanel>
+                                        <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,18"  Click="btn_click_basic"/>
                                     </Grid>
                                 </StackPanel>
-                                </Border>
-                            <Border Background="#04444D" Height="217" Width="140" CornerRadius="10"/>
-                            <Border Background="#04444D" Height="217" Width="140" Margin="422,0,60,0" CornerRadius="10"/>
+                            </Border>
+                            <Border Background="#E4E1DC" Height="217" Width="140" CornerRadius="10">
+                                <StackPanel>
+                                    <Grid>
+                                        <Image Source="/img/paket/paket 1a.png"/>
+                                        <TextBlock Text="STANDART" FontWeight="Bold" FontSize="18" Foreground="#F5F2EB" HorizontalAlignment="Center" Margin="0 10"/>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="6" FontSize="40" FontWeight="Bold" Foreground="#1D1D21" HorizontalAlignment="Center" Height="50"/>
+                                            <TextBlock Text="Voucher Setiap" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Pembelian" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Rp 50.000" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5"/>
+                                        </StackPanel>
+                                        <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,18" Click="btn_click_standart"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                            <Border Background="#E4E1DC" Height="217" Width="140" Margin="422,0,60,0" CornerRadius="10">
+                                <Grid>
+                                    <Image Source="/img/paket/paket 1a.png"/>
+                                    <TextBlock Text="VIP" FontWeight="Bold" FontSize="18" Foreground="#F5F2EB" HorizontalAlignment="Center" Margin="0 10"/>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="10" FontSize="40" FontWeight="Bold" Foreground="#1D1D21" HorizontalAlignment="Center" Height="50"/>
+                                        <TextBlock Text="Voucher Setiap" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Pembelian" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Rp 65.000" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5"/>
+                                    </StackPanel>
+                                    <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,18" Click="btn_click_vip"/>
+                                </Grid>
+                            </Border>
                         </Grid>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                    </Border>
+                </StackPanel>
+
+
+                <!--// SALDO ANDA//-->
+                <StackPanel Grid.Row="1" Visibility="Visible">
+                    <TextBlock Text="Saldo Anda" FontSize="24" FontWeight="Bold" Margin="60 20"/>
+                    <Border Background="#E4E1DC" Width="500" Height="150" CornerRadius="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="Dompet Anda :" FontSize="14" FontWeight="SemiBold" Margin="108,45,90,85"/>
+                                <TextBlock Text="Rp " FontSize="20" FontWeight="Bold" Margin="108,70,159,50"/>
+                                <TextBlock Text="1.050.000" FontSize="20" FontWeight="Bold" Margin="141,70,26,50"/>
+                                <Image Source="/img/paket/wallet.png" Margin="17,40,203,42"/>
+                                <Rectangle Width="2.5" Height="120" Fill="Black" HorizontalAlignment="Right"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBlock Text="Isi Saldo" FontSize="18" FontWeight="Bold" Margin="64,10,64,116"/>
+                                <TextBox Height="30" Width="150" Margin="25,50,25,70" FontSize="18" FontWeight="Bold"/>
+                                <Button Content="Tambah" Style="{StaticResource buttonMain2}" Height="35" Margin="50,98,50,17"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

@@ -289,4 +289,34 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="buttonMain4" TargetType="Button">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Width" Value="102"/>
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Background" Value="#04444D"/>
+        <Setter Property="Foreground" Value="#F5F2EB"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="#05353C" BorderThickness="0.75" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#F5F2EB"/>
+                <Setter Property="Background" Value="#09616E"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Foreground" Value="#F5F2EB"/>
+                <Setter Property="Background" Value="#003239"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

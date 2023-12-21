@@ -15,25 +15,32 @@
     </UserControl.DataContext>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Background="#F5F2EB" CornerRadius="0, 15, 0, 0">
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0" Grid.ColumnSpan="2">
             <StackPanel>
                 <Grid>
                     <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60,15,461,15"/>
                     <TextBlock Text="Voucher Tersisa: " FontSize="16" FontWeight="SemiBold" Margin="414,30,59,19" Foreground="#1D1D21"/>
                     <TextBlock x:Name="lblVoucher" Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
                 </Grid>
-
-                <Grid>
-                    <TextBlock Text="nyoh isi" Name="lblbinding"/>
-                </Grid>
+                <Border>
+                    <Grid Height="48">
+                        <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp" Margin="60 10" Height="20" BorderThickness="1.5" BorderBrush="#04444D" TextChanged="txtLocationQueryChanged" />
+                        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="522,0,0,0" MouseUp="ClickX" Visibility="Collapsed" Style="{StaticResource imgClose}" HorizontalAlignment="Left" Height="17" VerticalAlignment="Center" Width="17"/>
+                        <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="542,0,0,0" MouseUp="ClickSearch" Style="{StaticResource imgClose}" HorizontalAlignment="Left" Height="17" VerticalAlignment="Center" Width="17"/>
+                    </Grid>
+                </Border>
 
                 <wpf1:MapControl x:Name="MapControl" Height="228" Width="498" MouseRightButtonUp="MapRBUp" />
 
-                <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+                <Border Background="#F5F2EB">
                     <StackPanel>
                         <TextBlock Text="Status Pesanan" FontWeight="Bold" FontSize="20" Height="29" Foreground="#1D1D21" Margin="60 15"/>
                         <Border Background="#E4E1DC" Width="499" Height="110" CornerRadius="10">
@@ -53,7 +60,10 @@
                                 <!--// Baris 1 //-->
                                 <TextBlock Text="Nama Petugas" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
                                 <TextBlock x:Name="txtNama" Text="{Binding DisplayNamaPetugas}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center"/>
+<!--                                 <Label Content="" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" x:Name="HasilLabel"/>
+                                <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/> -->
 
                                 <!--// Baris 2 //-->
                                 <TextBlock Text="Alamat Tujuan" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -64,7 +74,10 @@
                                 <!--// Baris 3 //-->
                                 <TextBlock Text="Estimasti Tiba" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="txtWaktu" Text="{Binding DisplayEstimasi}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>
+                                <TextBlock x:Name="txtWaktu" Text="{Binding DisplayEstimasi}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>       
+                                <Button x:Name="BtnLocationExpand" Content="&gt;" HorizontalAlignment="Left" Height="19" Margin="315,10,0,0" VerticalAlignment="Top" Width="22" BorderThickness="0" Background="#E4E1DC" Foreground="#1D1D21" 
+                                        FontSize="30" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="1" 
+                                        Padding="-13" Visibility="Hidden" Click="ClickLocationexpand"/>
                             </Grid>
                         </Border>
                     </StackPanel>
@@ -77,7 +90,8 @@
                 </Grid>
             </StackPanel>
         </Border>
-
-
+        <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="217" Margin="0,105,0,0" VerticalAlignment="Top" Width="498" Grid.Column="1"/>
+        <TextBlock x:Name="txtCariLokasi" HorizontalAlignment="Left" Height="13" FontSize="12" FontFamily="Inter"  Margin="65,88,0,0" TextWrapping="Wrap" Text="Cari lokasi . . ." VerticalAlignment="Top" Width="72" Grid.ColumnSpan="2" Foreground="#7f7f7f" TextAlignment="Justify"/>
     </Grid>
+
 </UserControl>

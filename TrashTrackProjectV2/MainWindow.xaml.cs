@@ -38,6 +38,7 @@ namespace TrashTrackProjectV2
             loginPage.Show();
             this.Close();
             Pesan.PinCoordinate = new MPoint(0,0);
+            Pesan.AlamatMap = new string(string.Empty);
         }
 
         private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
