@@ -38,10 +38,8 @@ namespace TrashTrackProjectV2.View
     /// </summary>
     public partial class Pesan : UserControl
     {
-        private string[] namaPetugas = { "Cecep Mansur", "Supardi", "Harjo Budiyanto", "Bambang Prakarsa", "Joko Prasongko" };
-
         public static MPoint PinCoordinate = new MPoint(0, 0);
-        public static string AlamatMap = new string(string.Empty); 
+        public static string AlamatMap = new string(string.Empty);
         string[] LatData = new string[7];
         string[] LonData = new string[7];
         string[] AddressData = new string[7];
@@ -64,6 +62,14 @@ namespace TrashTrackProjectV2.View
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
             txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility = Visibility.Collapsed;
+            }
         }
 
         //mendapat bitmap id dari gambar
@@ -104,7 +110,16 @@ namespace TrashTrackProjectV2.View
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
             AlamatMap = formattedAddress;
+
             txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility = Visibility.Collapsed;
+            }
             MessageBox.Show(formattedAddress);
             canvas.Children.Clear();
         }
@@ -159,7 +174,7 @@ namespace TrashTrackProjectV2.View
             }
             int startIndex = json.IndexOf("\\\"display_name\\\"", start) + 19; // cari kata "display_name", tambahkan 13 untuk melewati ":"
             int endIndex = json.IndexOf("\\\"", startIndex); // cari tanda kutip pertama setelah startIndex
-            if (startIndex > 12 && endIndex > startIndex && json.IndexOf("\\\"display_name\\\"", start)!=-1)
+            if (startIndex > 12 && endIndex > startIndex && json.IndexOf("\\\"display_name\\\"", start) != -1)
             {
                 return json.Substring(startIndex, endIndex - startIndex); // ekstrak substring antara startIndex dan endIndex
             }
@@ -171,7 +186,7 @@ namespace TrashTrackProjectV2.View
             int endIndex = json.IndexOf("\\\"", startIndex); // cari tanda kutip pertama setelah startIndex
             if (startIndex > 12 && endIndex > startIndex)
             {
-                return  json.Substring(startIndex, endIndex - startIndex); // ekstrak substring antara startIndex dan endIndex
+                return json.Substring(startIndex, endIndex - startIndex); // ekstrak substring antara startIndex dan endIndex
             }
             return null;
         }
@@ -218,14 +233,12 @@ namespace TrashTrackProjectV2.View
         {
             PesenBtn.Visibility = Visibility.Hidden;
             SelesaiBtn.Visibility = Visibility.Visible;
-            PilihPetugasSecaraAcak();
         }
 
         private void SelesaiBtn_Click(object sender, RoutedEventArgs e)
         {
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
-            HapusPetugas();
         }
 
         private async void LocationKeyDown(object sender, KeyEventArgs e)
@@ -315,6 +328,14 @@ namespace TrashTrackProjectV2.View
             PinCoordinate = new MPoint(Lon, Lat);
             AlamatMap = AddressData[index];
             txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility = Visibility.Collapsed;
+            }
             var coordinate = SphericalMercator.FromLonLat(Lon, Lat);
             MPoint FlyCoordinate = new MPoint(coordinate.x, coordinate.y);
             MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
@@ -446,19 +467,9 @@ namespace TrashTrackProjectV2.View
             }
         }
 
-        private void PilihPetugasSecaraAcak()
+        private void ClickLocationexpand(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            int indexPetugas = random.Next(0, namaPetugas.Length);
-
-            string petugasTerpilih = namaPetugas[indexPetugas];
-
-            HasilLabel.Content = petugasTerpilih;
-        }
-
-        private void HapusPetugas()
-        {
-            HasilLabel.Content = "";
+            MessageBox.Show(AlamatMap);
         }
     }
 }
