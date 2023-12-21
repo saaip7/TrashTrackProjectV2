@@ -86,17 +86,17 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0">
-                                <TextBlock Text="Dompet Anda :" FontSize="14" FontWeight="SemiBold" Margin="108,45,90,85"/>
+                                <TextBlock x:Name="lbldompetanda" Text="Dompet Anda :" FontSize="14" FontWeight="SemiBold" Margin="108,45,90,85"/>
                                 <TextBlock Text="Rp " FontSize="20" FontWeight="Bold" Margin="108,70,159,50"/>
-                                <TextBlock Text="1.050.000" FontSize="20" FontWeight="Bold" Margin="141,70,26,50"/>
+                                <TextBlock x:Name="lblSaldo" Text="{Binding DisplaySaldo}" FontSize="20" FontWeight="Bold" Margin="141,70,26,50"/>
                                 <Image Source="/img/paket/wallet.png" Margin="17,40,203,42"/>
                                 <Rectangle Width="2.5" Height="120" Fill="Black" HorizontalAlignment="Right"/>
                             </Grid>
 
                             <Grid Grid.Column="1">
                                 <TextBlock Text="Isi Saldo" FontSize="18" FontWeight="Bold" Margin="64,10,64,116"/>
-                                <TextBox Height="30" Width="150" Margin="25,50,25,70" FontSize="18" FontWeight="Bold"/>
-                                <Button Content="Tambah" Style="{StaticResource buttonMain2}" Height="35" Margin="50,98,50,17"/>
+                                <TextBox x:Name="txtbIsiSaldo" Height="30" Width="150" Margin="25,50,25,70" FontSize="18" FontWeight="Bold" TextChanged="TextBox_TextChanged"/>
+                                <Button Content="Tambah" Style="{StaticResource buttonMain2}" Height="35" Margin="50,98,50,17" Click="Button_Click"/>
                             </Grid>
                         </Grid>
                     </Border>

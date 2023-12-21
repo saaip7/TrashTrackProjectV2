@@ -9,6 +9,7 @@ using System.Windows.Navigation;
 using System.Runtime.Intrinsics.X86;
 using System.Text.Json;
 using System.IO;
+using System.Windows;
 
 namespace TrashTrackProjectV2.Model
 {
@@ -21,6 +22,7 @@ namespace TrashTrackProjectV2.Model
         private string Password { get; set; }
         public string Alamat { get; set; }
         public string NoTelp { get; set; }
+        public decimal Saldo { get; set; }
 
         public User()
         {
@@ -137,39 +139,7 @@ namespace TrashTrackProjectV2.Model
             }
             return isSuccessful;
         }
-        /*public bool IsValidUser(string email, string password)
-        {
-            // Connection string: Ganti dengan connection string Anda
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Sesuaikan nama tabel dan kolom dengan struktur database Anda
-                string query = "SELECT * FROM tb_user WHERE email = @email";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@email", email);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        // Jika email ditemukan, periksa validitas password
-                        if (reader.HasRows)
-                        {
-                            reader.Read(); // Baca baris pertama (harusnya hanya satu baris)
-                            string storedPassword = reader["Password"].ToString();
-
-                            // Sesuaikan dengan metode keamanan yang sesuai (contoh sederhana)
-                            return password == storedPassword;
-                        }
-                        else
-                        {
-                            return false; // email tidak ditemukan
-                        }
-                    }
-                }
-
-            }
-        }*/
+        
         public LoginResult IsValidUser(string email, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -272,9 +242,125 @@ namespace TrashTrackProjectV2.Model
                     }
                 }
             }
-
             return user;
+        }
+
+        public User getSaldoInfo()
+        {
+            User user = new User();
+            string query = "SELECT * FROM tb_user WHERE user_id = @UserId";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userID);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // Jika ada data
+                        {
+                            // Setel nilai-nilai dari database ke instance User
+                            user.Saldo = (decimal) reader.GetDecimal(reader.GetOrdinal("Saldo"));
+                        }
+                    }
+                }
+            }
+            return user;
+        }
+        public bool useSaldo(decimal jumlah)
+        {
+            User user = new User();
+            user.Saldo = user.getSaldoInfo().Saldo - jumlah;
+            if(user.Saldo < 0)
+            {
+                MessageBox.Show("Saldo tidak cukup");
+                return false;
+            }
+            else
+            {
+                MessageBox.Show($"Saldo berhasil digunakan. Saldo sekarang: {user.Saldo}");
+                // Simpan informasi pengisian saldo ke database
+                SimpanSaldo(-jumlah);
+                return true;
+            }
+        }
+        public void IsiSaldo(decimal jumlah)
+        {
+            User user = new User();
+
+            if (jumlah > 0)
+            {
+                user.Saldo += jumlah;
+                // Simpan informasi pengisian saldo ke database
+                user.SimpanSaldo(jumlah);
+                MessageBox.Show($"berhasil menambahkan Rp {jumlah}. Saldo sekarang: Rp {user.getSaldoInfo().Saldo}");
+            }
+            else
+            {
+                MessageBox.Show("Jumlah pengisian saldo harus lebih dari 0.");
+            }
+        }
+
+        public void SimpanSaldo(decimal jumlah)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "UPDATE tb_user SET Saldo = Saldo + @Jumlah WHERE user_id = @user_id;";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@user_id", userID);
+                        command.Parameters.AddWithValue("@Jumlah", jumlah);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
    
 }
+
+/*public bool IsValidUser(string email, string password)
+        {
+            // Connection string: Ganti dengan connection string Anda
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Sesuaikan nama tabel dan kolom dengan struktur database Anda
+                string query = "SELECT * FROM tb_user WHERE email = @email";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@email", email);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Jika email ditemukan, periksa validitas password
+                        if (reader.HasRows)
+                        {
+                            reader.Read(); // Baca baris pertama (harusnya hanya satu baris)
+                            string storedPassword = reader["Password"].ToString();
+
+                            // Sesuaikan dengan metode keamanan yang sesuai (contoh sederhana)
+                            return password == storedPassword;
+                        }
+                        else
+                        {
+                            return false; // email tidak ditemukan
+                        }
+                    }
+                }
+
+            }
+        }*/

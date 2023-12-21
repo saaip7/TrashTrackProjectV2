@@ -14,6 +14,7 @@ namespace TrashTrackProjectV2.ViewModel
     class BerlanggananVM : Utilities.ViewModelBase
     {
         public readonly PageModel _pageModel;
+        public readonly User _user;
         public int DisplayDayPaket
         {
             get { return _pageModel.dayPaketA; }
@@ -23,11 +24,22 @@ namespace TrashTrackProjectV2.ViewModel
                 OnPropertyChanged();
             }
         }
+        public decimal DisplaySaldo
+        {
+            get { return _user.getSaldoInfo().Saldo; }
+            set
+            {
+                _user.Saldo = (value);
+                OnPropertyChanged();
+            }
+        }
 
         public BerlanggananVM()
         {
             _pageModel = new PageModel();
+            _user = new User();
             DisplayDayPaket = new basicVoucher().voucherValue();
+            DisplaySaldo = _user.getSaldoInfo().Saldo;
         }
      
     }

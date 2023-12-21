@@ -32,22 +32,53 @@ namespace TrashTrackProjectV2.View
         private void btn_click_basic(object sender, RoutedEventArgs e)
         {
             basicVoucher basicVoucher = new basicVoucher();
-            basicVoucher.AddVoucher();
-            MessageBox.Show($"Berhasil Menambahkan {basicVoucher.voucherValue()} Voucher");
+            User user = new User();
+            bool isEnough = user.useSaldo(basicVoucher.getPrice());
+            if (isEnough)
+            {
+                basicVoucher.AddVoucher();
+                MessageBox.Show($"Berhasil Menambahkan {basicVoucher.voucherValue()} Voucher");
+            }
+            lblSaldo.Text = user.getSaldoInfo().Saldo.ToString();
+
         }
 
         private void btn_click_medium(object sender, RoutedEventArgs e)
         {
             mediumVoucher medium = new mediumVoucher();
-            medium.AddVoucher();
-            MessageBox.Show($"Berhasil Menambahkan {medium.voucherValue()} Voucher");
+            User user = new User();
+            bool isEnough = user.useSaldo(medium.getPrice());
+            if (isEnough) {
+                medium.AddVoucher();
+                MessageBox.Show($"Berhasil Menambahkan {medium.voucherValue()} Voucher");
+            }
+            lblSaldo.Text = user.getSaldoInfo().Saldo.ToString();
+
         }
 
         private void btn_click_premium(object sender, RoutedEventArgs e)
         {
             premiumVoucher premium = new premiumVoucher();
-            premium.AddVoucher();
-            MessageBox.Show($"Berhasil Menambahkan {premium.voucherValue()} Voucher");
+            User user = new User();
+            bool isEnough = user.useSaldo(premium.getPrice());
+            if (isEnough){
+                premium.AddVoucher();
+                MessageBox.Show($"Berhasil Menambahkan {premium.voucherValue()} Voucher");
+            }
+            lblSaldo.Text = user.getSaldoInfo().Saldo.ToString();
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+            //user.IsiSaldo(Convert.ToDecimal(txtbIsiSaldo.Text));
+            user.IsiSaldo(Convert.ToDecimal(txtbIsiSaldo.Text));
+            lblSaldo.Text = user.getSaldoInfo().Saldo.ToString();
         }
     }
 }

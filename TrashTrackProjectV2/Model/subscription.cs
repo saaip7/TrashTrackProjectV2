@@ -14,6 +14,7 @@ namespace TrashTrackProjectV2.Model
     {
         public static subscription Subscription  = new subscription();
         protected int additionalVouchers { get; set; }
+        protected decimal price { get; set; }
         public subscription()
         {
             additionalVouchers = 0;
@@ -27,6 +28,10 @@ namespace TrashTrackProjectV2.Model
         string userID = File.ReadAllText(@"jwt.json");
         internal long voucherCounter;
 
+        public decimal getPrice()
+        {
+            return price;
+        }
         public int voucherValue()
         {
             return additionalVouchers;
@@ -151,6 +156,7 @@ namespace TrashTrackProjectV2.Model
         public basicVoucher()
         {
             additionalVouchers = 3;
+            price = 30000;
         }
     }
     public class mediumVoucher : subscription
@@ -158,6 +164,7 @@ namespace TrashTrackProjectV2.Model
         public mediumVoucher()
         {
             additionalVouchers = 6;
+            price = 50000;
         }
     }
     public class premiumVoucher : subscription
@@ -165,6 +172,7 @@ namespace TrashTrackProjectV2.Model
         public premiumVoucher()
         {
             additionalVouchers = 10;
+            price = 65000;
         }
     }
 }
