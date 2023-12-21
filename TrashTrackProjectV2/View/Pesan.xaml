@@ -72,6 +72,9 @@
                                 <TextBlock Text="Estimasti Tiba" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                 <TextBlock Text="di isi estimate" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>
+                                <Button x:Name="BtnLocationExpand" Content="&gt;" HorizontalAlignment="Left" Height="19" Margin="315,10,0,0" VerticalAlignment="Top" Width="22" BorderThickness="0" Background="#E4E1DC" Foreground="#1D1D21" 
+                                        FontSize="30" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="1" 
+                                        Padding="-13" Visibility="Hidden" Click="ClickLocationexpand"/>
                             </Grid>
                         </Border>
                     </StackPanel>
