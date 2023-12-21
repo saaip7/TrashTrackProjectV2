@@ -60,7 +60,8 @@
                                 <!--// Baris 1 //-->
                                 <TextBlock Text="Nama Petugas" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center"/>
+                                <Label Content="" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" x:Name="HasilLabel"/>
+                                <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/>
 
                                 <!--// Baris 2 //-->
                                 <TextBlock Text="Alamat Tujuan" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>

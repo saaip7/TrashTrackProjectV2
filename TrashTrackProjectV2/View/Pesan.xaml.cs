@@ -38,6 +38,8 @@ namespace TrashTrackProjectV2.View
     /// </summary>
     public partial class Pesan : UserControl
     {
+        private string[] namaPetugas = { "Cecep Mansur", "Supardi", "Harjo Budiyanto", "Bambang Prakarsa", "Joko Prasongko" };
+
         public static MPoint PinCoordinate = new MPoint(0, 0);
         public static string AlamatMap = new string(string.Empty); 
         string[] LatData = new string[7];
@@ -216,12 +218,14 @@ namespace TrashTrackProjectV2.View
         {
             PesenBtn.Visibility = Visibility.Hidden;
             SelesaiBtn.Visibility = Visibility.Visible;
+            PilihPetugasSecaraAcak();
         }
 
         private void SelesaiBtn_Click(object sender, RoutedEventArgs e)
         {
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
+            HapusPetugas();
         }
 
         private async void LocationKeyDown(object sender, KeyEventArgs e)
@@ -440,6 +444,21 @@ namespace TrashTrackProjectV2.View
             {
                 txtCariLokasi.Visibility = Visibility.Visible;
             }
+        }
+
+        private void PilihPetugasSecaraAcak()
+        {
+            Random random = new Random();
+            int indexPetugas = random.Next(0, namaPetugas.Length);
+
+            string petugasTerpilih = namaPetugas[indexPetugas];
+
+            HasilLabel.Content = petugasTerpilih;
+        }
+
+        private void HapusPetugas()
+        {
+            HasilLabel.Content = "";
         }
     }
 }
