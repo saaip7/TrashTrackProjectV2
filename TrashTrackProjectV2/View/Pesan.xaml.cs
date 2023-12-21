@@ -100,6 +100,7 @@ namespace TrashTrackProjectV2.View
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
             MessageBox.Show(formattedAddress);
+            canvas.Children.Clear();
         }
         public async Task<string> GetAddressFromCoordinates(double latitude, double longitude, string apiKey)
         {

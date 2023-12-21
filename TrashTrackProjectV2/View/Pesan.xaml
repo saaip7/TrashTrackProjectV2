@@ -33,8 +33,8 @@
                 <Border>
                     <Grid Height="48">
                         <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp" Margin="60 10" Height="20" BorderThickness="1.5" BorderBrush="#04444D"/>
-                        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="522,16,83,16" MouseUp="ClickX" Visibility="Collapsed" />
-                        <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="543,18,66,18" MouseUp="ClickSearch"/>
+                        <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="522,0,0,0" MouseUp="ClickX" Visibility="Collapsed" Style="{StaticResource imgClose}" HorizontalAlignment="Left" Height="17" VerticalAlignment="Center" Width="17"/>
+                        <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="542,0,0,0" MouseUp="ClickSearch" Style="{StaticResource imgClose}" HorizontalAlignment="Left" Height="17" VerticalAlignment="Center" Width="17"/>
                     </Grid>
                 </Border>
 
