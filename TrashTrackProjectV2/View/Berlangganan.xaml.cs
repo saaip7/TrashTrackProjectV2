@@ -31,9 +31,9 @@ namespace TrashTrackProjectV2.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            subscription subscription = new subscription();
-            subscription.AddVoucher(userID, 8);
-            MessageBox.Show("Berhasil Menambahkan 8 Voucher");
+            basicVoucher basicVoucher = new basicVoucher();
+            basicVoucher.AddVoucher();
+            MessageBox.Show($"Berhasil Menambahkan {basicVoucher.voucherValue()} Voucher");
         }
     }
 }

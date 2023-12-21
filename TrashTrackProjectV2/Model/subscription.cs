@@ -6,30 +6,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using TrashTrackProjectV2.Model;
 
 namespace TrashTrackProjectV2.Model
 {
-    internal class subscription
+    public class subscription
     {
-       string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        public static subscription Subscription  = new subscription();
+        protected int additionalVouchers { get; set; }
+        public subscription()
+        {
+            additionalVouchers = 0;
+        }
+        public subscription(int additionalVouchers)
+        {
+            this.additionalVouchers = additionalVouchers;
+        }
+        
+        string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
         string userID = File.ReadAllText(@"jwt.json");
-        public void AddVoucher(string userId, int additionalVouchers)
+        internal long voucherCounter;
+
+        public int voucherValue()
+        {
+            return additionalVouchers;
+        }
+        public void AddVoucher()
         {
             // Cek apakah user_id sudah ada dalam tb_subscription
-            if (UserExists(userId))
+            if (UserSubscriptionExists())
             {
-                // Jika user_id sudah ada, tambahkan jumlah voucher
-                UpdateVoucher(userId, additionalVouchers);
+                if (GetVoucherValue()+additionalVouchers > 100)
+                {
+                    throw new ArgumentException("Jumlah voucher tidak boleh melebihi 99.");
+                }
+                else if (GetVoucherValue() + additionalVouchers < 0)
+                {
+                    throw new ArgumentException("Jumlah voucher tidak boleh negatif.");
+                }
+                else
+                {
+                    // Jika user_id sudah ada, tambahkan jumlah voucher
+                    UpdateVoucher(additionalVouchers);
+                }
             }
             else
             {
                 // Jika user_id belum ada, tambahkan row baru ke tb_subscription
-                InsertNewSubscription(userId, additionalVouchers);
+                InsertNewSubscription();
+                if (GetVoucherValue()+additionalVouchers< 0)
+                {
+                    throw new ArgumentException("Jumlah voucher tidak boleh negatif.");
+                }
+                else
+                {
+                    // Jika user_id sudah ada, tambahkan jumlah voucher
+                    UpdateVoucher(additionalVouchers);
+                }
             }
         }
         
 
-        private bool UserExists(string userId)
+        private bool UserSubscriptionExists()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -37,7 +75,7 @@ namespace TrashTrackProjectV2.Model
 
                 using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM tb_subscription WHERE UserID = @UserId", connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", userId);
+                    command.Parameters.AddWithValue("@UserId", userID);
 
                     int count = (int)command.ExecuteScalar();
 
@@ -46,7 +84,7 @@ namespace TrashTrackProjectV2.Model
             }
         }
 
-        private void UpdateVoucher(string userId, int additionalVouchers)
+        private void UpdateVoucher(int additionalVouchers)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -54,7 +92,7 @@ namespace TrashTrackProjectV2.Model
 
                 using (SqlCommand command = new SqlCommand("UPDATE tb_subscription SET Voucher = Voucher + @AdditionalVouchers WHERE UserID = @UserId", connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", userId);
+                    command.Parameters.AddWithValue("@UserId", userID);
                     command.Parameters.AddWithValue("@AdditionalVouchers", additionalVouchers);
 
                     command.ExecuteNonQuery();
@@ -62,7 +100,7 @@ namespace TrashTrackProjectV2.Model
             }
         }
 
-        private void InsertNewSubscription(string userId, int initialVouchers)
+        private void InsertNewSubscription()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -70,8 +108,8 @@ namespace TrashTrackProjectV2.Model
 
                 using (SqlCommand command = new SqlCommand("INSERT INTO tb_subscription (UserID, Voucher) VALUES (@UserId, @InitialVouchers)", connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", userId);
-                    command.Parameters.AddWithValue("@InitialVouchers", initialVouchers);
+                    command.Parameters.AddWithValue("@UserId", userID);
+                    command.Parameters.AddWithValue("@InitialVouchers", 0);
 
                     command.ExecuteNonQuery();
                 }
@@ -108,6 +146,26 @@ namespace TrashTrackProjectV2.Model
             }
         }
     }
-
+    public class basicVoucher : subscription
+    {
+        public basicVoucher()
+        {
+            additionalVouchers = 2;
+        }
+    }
+    public class mediumVoucher : subscription
+    {
+        public mediumVoucher()
+        {
+            additionalVouchers = 4;
+        }
+    }
+    public class premiumVoucher : subscription
+    {
+        public premiumVoucher()
+        {
+            additionalVouchers = 8;
+        }
+    }
 }
 

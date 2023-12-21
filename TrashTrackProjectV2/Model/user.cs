@@ -12,11 +12,9 @@ using System.IO;
 
 namespace TrashTrackProjectV2.Model
 {
-  
-    // Contoh kelas User dalam Model
     public class User
-    {
-        // Properti pengguna
+    {   
+        public string user_id { get; set; }
         public string Username { get; set; }
         public string Nama { get; set; }
         public string Email { get; set; }
@@ -24,25 +22,32 @@ namespace TrashTrackProjectV2.Model
         public string Alamat { get; set; }
         public string NoTelp { get; set; }
 
-
-        // Konstruktor
-        /* public User(string username, string nama, string email, string password, string notelp, string alamat)
-         {
-             Username = username;
-             Nama = nama;
-             Email = email;
-             Password = password;
-             NoTelp = notelp;
-             Alamat = alamat;
-         }*/
+        public User()
+        {
+            user_id = string.Empty;
+            Username = string.Empty;
+            Nama = string.Empty;
+            Email = string.Empty;
+            Password = string.Empty;
+            Alamat = string.Empty;
+            NoTelp = string.Empty;
+        }
+        public User(string user_id, string username, string nama, string email, string password, string notelp, string alamat)
+        {
+            this.user_id = user_id;
+            Username = username;
+            Nama = nama;
+            Email = email;
+            Password = password;
+            NoTelp = notelp;
+            Alamat = alamat;
+        }
+        
         string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
         string userID = File.ReadAllText(@"jwt.json");
 
-        //string connectionString = "Data Source=localhost\\sqlexpress01;Initial Catalog=trashTrackProject;Integrated Security=True";
         public bool Insert(string username, string nama, string email, string password, string notelp, string alamat)
         {
-            // Connection string: Ganti dengan connection string Anda
-
             SqlConnection connection = new SqlConnection(connectionString);
             bool isSuccessful = false;
             try
@@ -226,8 +231,7 @@ namespace TrashTrackProjectV2.Model
                     {
                         while (reader.Read())
                         {
-                            // Gantilah "nama_kolom" dengan nama kolom yang sesuai di tabel Anda
-                            userID = reader["user_id"].ToString();                           
+                            userID = reader["user_id"].ToString();
                         }
                     }
                 }
@@ -243,8 +247,6 @@ namespace TrashTrackProjectV2.Model
         public User GetUserProfile()
         {
             User user = new User();
-
-            // Ganti dengan informasi koneksi database Anda
             string query = "SELECT * FROM tb_user WHERE user_id = @UserId";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
