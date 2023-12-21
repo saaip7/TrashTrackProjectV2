@@ -62,19 +62,19 @@
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                                 <TextBlock x:Name="txtNama" Text="{Binding DisplayNamaPetugas}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center"/>
-<!--                                 <Label Content="" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" x:Name="HasilLabel"/>
+                                <!--                                 <Label Content="" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" x:Name="HasilLabel"/>
                                 <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/> -->
 
                                 <!--// Baris 2 //-->
                                 <TextBlock Text="Alamat Tujuan" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="txtKoor" Text="{Binding DisplayAlamat}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="26,1,0,0" Grid.Row="1"/>
-                                <TextBlock x:Name="txtlongitude" Text="{Binding DisplayLongitude}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Top" Margin="174,19,2,0" Grid.Row="1" Grid.RowSpan="2"/>
-                                <TextBlock x:Name="txtlatitude" Text="{Binding DisplayLatitude}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="26,20,177,0" Grid.Row="1" Grid.RowSpan="2"/>
+                                <TextBlock x:Name="txtKoor" Text="{Binding DisplayAlamat}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="26,10,0,0" Grid.Row="1"/>
+                                <!-- <TextBlock x:Name="txtlongitude" Text="{Binding DisplayLongitude}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Top" Margin="174,19,2,0" Grid.Row="1" Grid.RowSpan="2"/>
+                                <TextBlock x:Name="txtlatitude" Text="{Binding DisplayLatitude}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="26,20,177,0" Grid.Row="1" Grid.RowSpan="2"/> -->
                                 <!--// Baris 3 //-->
                                 <TextBlock Text="Estimasti Tiba" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="txtWaktu" Text="{Binding DisplayEstimasi}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>       
+                                <TextBlock x:Name="txtWaktu" Text="{Binding DisplayEstimasi}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>
                                 <Button x:Name="BtnLocationExpand" Content="&gt;" HorizontalAlignment="Left" Height="19" Margin="315,10,0,0" VerticalAlignment="Top" Width="22" BorderThickness="0" Background="#E4E1DC" Foreground="#1D1D21" 
                                         FontSize="30" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="1" 
                                         Padding="-13" Visibility="Hidden" Click="ClickLocationexpand"/>
