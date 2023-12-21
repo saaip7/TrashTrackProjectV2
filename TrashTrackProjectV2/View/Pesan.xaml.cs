@@ -110,16 +110,7 @@ namespace TrashTrackProjectV2.View
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
             AlamatMap = formattedAddress;
-
             txtKoor.Text = AlamatMap;
-            if (txtKoor.Text.Length > 51)
-            {
-                BtnLocationExpand.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BtnLocationExpand.Visibility = Visibility.Collapsed;
-            }
             MessageBox.Show(formattedAddress);
             canvas.Children.Clear();
         }
