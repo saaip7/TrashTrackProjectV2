@@ -18,6 +18,7 @@ using System.IO;
 namespace TrashTrackProjectV2.View
 {
     /// <summary>
+    /// tes 
     /// Interaction logic for Berlangganan.xaml
     /// </summary>
     public partial class Berlangganan : UserControl
