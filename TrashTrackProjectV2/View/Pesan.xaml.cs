@@ -237,8 +237,9 @@ namespace TrashTrackProjectV2.View
                         Button newButton = new Button();
                         newButton.Content = "Lokasi tidak ditemukan, letakkan pin pada peta dengan klik kanan";
                         newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-                        newButton.Width = 622;
+                        newButton.Width = 498;
                         newButton.Height = 30;
+                        newButton.Background = new SolidColorBrush(Colors.White);
                         Canvas.SetTop(newButton, 0);
                         Canvas.SetLeft(newButton, 0);
                         canvas.Children.Add(newButton);
@@ -270,8 +271,9 @@ namespace TrashTrackProjectV2.View
                             Button newButton = new Button();
                             newButton.Content = buttontext;
                             newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-                            newButton.Width = 622;
+                            newButton.Width = 498;
                             newButton.Height = 30;
+                            newButton.Background = new SolidColorBrush(Colors.White);
 
                             // Menambahkan event handler untuk button
                             int index = i; // Membuat salinan variabel indeks
@@ -350,8 +352,9 @@ namespace TrashTrackProjectV2.View
                     Button newButton = new Button();
                     newButton.Content = "Lokasi tidak ditemukan, letakkan pin pada peta dengan klik kanan";
                     newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-                    newButton.Width = 622;
+                    newButton.Width = 498;
                     newButton.Height = 30;
+                    newButton.Background = new SolidColorBrush(Colors.White);
                     Canvas.SetTop(newButton, 0);
                     Canvas.SetLeft(newButton, 0);
                     canvas.Children.Add(newButton);
@@ -383,8 +386,9 @@ namespace TrashTrackProjectV2.View
                         Button newButton = new Button();
                         newButton.Content = buttontext;
                         newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-                        newButton.Width = 622;
+                        newButton.Width = 498;
                         newButton.Height = 30;
+                        newButton.Background = new SolidColorBrush(Colors.White);
 
                         // Menambahkan event handler untuk button
                         int index = i; // Membuat salinan variabel indeks

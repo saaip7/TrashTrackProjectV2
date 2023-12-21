@@ -9,17 +9,21 @@
              d:DesignHeight="600" 
              d:DesignWidth="622"
              Style="{StaticResource Page_Style}">
-    
+
     <UserControl.DataContext>
         <vm:PesanVM/>
     </UserControl.DataContext>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0">
+        <Border Background="#F5F2EB" CornerRadius="0, 15, 15, 0" Grid.ColumnSpan="2">
             <StackPanel>
                 <Grid>
                     <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60,15,461,15"/>
@@ -79,7 +83,7 @@
                 </Grid>
             </StackPanel>
         </Border>
-        <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="157" Margin="0,89,0,0" VerticalAlignment="Top" Width="622"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="217" Margin="0,105,0,0" VerticalAlignment="Top" Width="498" Grid.Column="1"/>
     </Grid>
-    
+
 </UserControl>
