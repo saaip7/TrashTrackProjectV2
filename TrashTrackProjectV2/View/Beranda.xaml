@@ -28,7 +28,14 @@
         <Border Margin="60,280,336,67">
             <StackPanel>
                 <TextBlock Text="Pesanan Aktif" FontWeight="Bold" FontSize="20" Margin="0 5"/>
-                <Border Background="#04444D" Height="90" Width="222" CornerRadius="10" />
+                <Border Background="#04444D" Height="84" Width="222" CornerRadius="10">
+                    <Grid>
+                        <TextBlock Text="Petugas :" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="10,16,152,46"/>
+                        <TextBlock x:Name="txtNama" Text="{Binding DisplayNamaPetugas}" FontSize="14" FontWeight="SemiBold" Foreground="white" VerticalAlignment="Top" Margin="75,17,0,0" Height="21"/>
+                        <TextBlock Text="Estimasi :" FontSize="14" FontWeight="SemiBold" Foreground="White" Margin="10,47,152,15"/>
+                        <TextBlock x:Name="txtWaktu" Text="{Binding DisplayEstimasi}" FontSize="14" FontWeight="SemiBold" Foreground="white" VerticalAlignment="Top" Margin="75,48,0,0" Height="21"/>
+                    </Grid>
+                </Border>
             </StackPanel>
         </Border>
 

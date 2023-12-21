@@ -38,7 +38,7 @@
                                             <TextBlock Text="Pembelian" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
                                             <TextBlock Text="Rp 30.000" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5"/>
                                         </StackPanel>
-                                        <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,18"  Click="btn_click_basic"/>
+                                        <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,13"  Click="btn_click_basic"/>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -53,7 +53,7 @@
                                             <TextBlock Text="Pembelian" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
                                             <TextBlock Text="Rp 50.000" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5"/>
                                         </StackPanel>
-                                        <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,18" Click="btn_click_medium"/>
+                                        <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,13" Click="btn_click_medium"/>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -67,7 +67,7 @@
                                         <TextBlock Text="Pembelian" FontSize="10" FontWeight="Medium" HorizontalAlignment="Center"/>
                                         <TextBlock Text="Rp 65.000" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5"/>
                                     </StackPanel>
-                                    <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,18" Click="btn_click_premium"/>
+                                    <Button Content="Beli" Style="{StaticResource buttonMain4}" Margin="19,171,19,13" Click="btn_click_premium"/>
                                 </Grid>
                             </Border>
                         </Grid>
