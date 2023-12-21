@@ -406,134 +406,10 @@ namespace TrashTrackProjectV2.View
                 connection.Close();
             }
             return isSuccess;
-            private async void LocationKeyDown(object sender, KeyEventArgs e)
-            {
-                if (e.Key == Key.Enter)
-                {
-                    canvas.Children.Clear();
-                    if (txtLocationQuery.Text != null)
-                    {
-                        var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
-                        if (pinLayer != null)
-                        {
-                            MapControl.Map.Layers.Remove(pinLayer);
-                        }
-                        string result = await (GetCoordinatesFromAddress(txtLocationQuery.Text));
-                        if (result == "\"[]\"" && txtLocationQuery.Text != "")
-                        {
-                            Button newButton = new Button();
-                            newButton.Content = "Lokasi tidak ditemukan, letakkan pin pada peta dengan klik kanan";
-                            newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-                            newButton.Width = 498;
-                            newButton.Height = 30;
-                            newButton.Background = new SolidColorBrush(Colors.White);
-                            Canvas.SetTop(newButton, 0);
-                            Canvas.SetLeft(newButton, 0);
-                            canvas.Children.Add(newButton);
-                        }
-                        string[] formattedLat = new string[7];
-                        string[] formattedLon = new string[7];
-                        string[] formattedAddress = new string[7];
-                        int i = 0, addressStartingIndex = 0, LonStartIndex = 0, LatStartIndex = 0;
-                        do
-                        {
-                            formattedLon[i] = ExtractLongitude(result, LonStartIndex);
-                            LonData[i] = formattedLon[i];
-                            formattedLat[i] = ExtractLatitude(result, LatStartIndex);
-                            LatData[i] = formattedLat[i];
-                            formattedAddress[i] = ExtractFormattedAddress(result, addressStartingIndex);
-                            AddressData[i] = formattedAddress[i];
-                            i++;
-                            LonStartIndex = result.IndexOf("\\\"lon\\\"", LonStartIndex) + 10;
-                            LatStartIndex = result.IndexOf("\\\"lat\\\"", LatStartIndex) + 10;
-                            addressStartingIndex = result.IndexOf("\\\"display_name\\\"", addressStartingIndex) + 19;
-
-                        } while (formattedAddress[i - 1] != null && i < 6);
-                        double top = 0;
-                        for (i = 0; i < formattedAddress.Length; i++)
-                        {
-                            string buttontext = formattedAddress[i];
-                            if (buttontext != null)
-                            {
-                                Button newButton = new Button();
-                                newButton.Content = buttontext;
-                                newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
-                                newButton.Width = 498;
-                                newButton.Height = 30;
-                                newButton.Background = new SolidColorBrush(Colors.White);
-
-                                // Menambahkan event handler untuk button
-                                int index = i; // Membuat salinan variabel indeks
-                                newButton.Click += (sender, e) => Button_Click(sender, e, index);
-
-                                // Menentukan posisi button
-                                Canvas.SetTop(newButton, top);
-                                Canvas.SetLeft(newButton, 0);
-
-                                // Menambahkan button ke dalam canvas
-                                canvas.Children.Add(newButton);
-
-                                // Mengatur posisi untuk button selanjutnya
-                                top += newButton.Height;
-                            }
-                        }
-                    }
-                }
-            }
-            private void Button_Click(object sender, RoutedEventArgs e, int index)
-            {
-                var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
-                if (pinLayer != null)
-                {
-                    MapControl.Map.Layers.Remove(pinLayer);
-                }
-                Button clickedButton = (Button)sender;
-                double Lat = double.Parse(LatData[index], CultureInfo.InvariantCulture);
-                double Lon = double.Parse(LonData[index], CultureInfo.InvariantCulture);
-                PinCoordinate = new MPoint(Lon, Lat);
-                AlamatMap = AddressData[index];
-                txtKoor.Text = AlamatMap;
-                if (txtKoor.Text.Length > 51)
-                {
-                    BtnLocationExpand.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    BtnLocationExpand.Visibility = Visibility.Collapsed;
-                }
-                var coordinate = SphericalMercator.FromLonLat(Lon, Lat);
-                MPoint FlyCoordinate = new MPoint(coordinate.x, coordinate.y);
-                MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
-                if (bbox.Contains(FlyCoordinate))
-                {
-                    var pointFeature = new PointFeature(coordinate.x, coordinate.y)
-                    {
-                        Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
-                    };
-                    //penambahan pin ke map
-                    var layer = new MemoryLayer() { Name = "PinLayer" };
-                    layer.Features = new List<PointFeature> { pointFeature };
-                    layer.Style = null;
-                    MapControl.Map.Layers.Add(layer);
-                    MapControl.Map.Navigator.FlyTo(FlyCoordinate, 1, 1L);
-                    canvas.Children.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Lokasi berada diluar jangkauan");
-                    canvas.Children.Clear();
-                    txtLocationQuery.Clear();
-                }
-            }
-
-            private void ClickX(object sender, MouseButtonEventArgs e)
-            {
-                txtLocationQuery.Clear();
-                canvas.Children.Clear();
-                ImgX.Visibility = Visibility.Hidden;
-            }
-
-            private async void ClickSearch(object sender, MouseButtonEventArgs e)
+        }
+        private async void LocationKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
                 canvas.Children.Clear();
                 if (txtLocationQuery.Text != null)
@@ -604,38 +480,162 @@ namespace TrashTrackProjectV2.View
                     }
                 }
             }
-
-            private void LocationKeyUp(object sender, KeyEventArgs e)
+        }
+        private void Button_Click(object sender, RoutedEventArgs e, int index)
+        {
+            var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+            if (pinLayer != null)
             {
-                if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
+                MapControl.Map.Layers.Remove(pinLayer);
+            }
+            Button clickedButton = (Button)sender;
+            double Lat = double.Parse(LatData[index], CultureInfo.InvariantCulture);
+            double Lon = double.Parse(LonData[index], CultureInfo.InvariantCulture);
+            PinCoordinate = new MPoint(Lon, Lat);
+            AlamatMap = AddressData[index];
+            txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility = Visibility.Collapsed;
+            }
+            var coordinate = SphericalMercator.FromLonLat(Lon, Lat);
+            MPoint FlyCoordinate = new MPoint(coordinate.x, coordinate.y);
+            MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
+            if (bbox.Contains(FlyCoordinate))
+            {
+                var pointFeature = new PointFeature(coordinate.x, coordinate.y)
                 {
-                    ImgX.Visibility = Visibility.Visible;
-                    txtCariLokasi.Visibility = Visibility.Collapsed;
+                    Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
+                };
+                //penambahan pin ke map
+                var layer = new MemoryLayer() { Name = "PinLayer" };
+                layer.Features = new List<PointFeature> { pointFeature };
+                layer.Style = null;
+                MapControl.Map.Layers.Add(layer);
+                MapControl.Map.Navigator.FlyTo(FlyCoordinate, 1, 1L);
+                canvas.Children.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Lokasi berada diluar jangkauan");
+                canvas.Children.Clear();
+                txtLocationQuery.Clear();
+            }
+        }
+
+        private void ClickX(object sender, MouseButtonEventArgs e)
+        {
+            txtLocationQuery.Clear();
+            canvas.Children.Clear();
+            ImgX.Visibility = Visibility.Hidden;
+        }
+
+        private async void ClickSearch(object sender, MouseButtonEventArgs e)
+        {
+            canvas.Children.Clear();
+            if (txtLocationQuery.Text != null)
+            {
+                var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+                if (pinLayer != null)
+                {
+                    MapControl.Map.Layers.Remove(pinLayer);
                 }
-                else
+                string result = await (GetCoordinatesFromAddress(txtLocationQuery.Text));
+                if (result == "\"[]\"" && txtLocationQuery.Text != "")
                 {
-                    ImgX.Visibility = Visibility.Hidden;
-                    txtCariLokasi.Visibility = Visibility.Visible;
-                    canvas.Children.Clear();
+                    Button newButton = new Button();
+                    newButton.Content = "Lokasi tidak ditemukan, letakkan pin pada peta dengan klik kanan";
+                    newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+                    newButton.Width = 498;
+                    newButton.Height = 30;
+                    newButton.Background = new SolidColorBrush(Colors.White);
+                    Canvas.SetTop(newButton, 0);
+                    Canvas.SetLeft(newButton, 0);
+                    canvas.Children.Add(newButton);
+                }
+                string[] formattedLat = new string[7];
+                string[] formattedLon = new string[7];
+                string[] formattedAddress = new string[7];
+                int i = 0, addressStartingIndex = 0, LonStartIndex = 0, LatStartIndex = 0;
+                do
+                {
+                    formattedLon[i] = ExtractLongitude(result, LonStartIndex);
+                    LonData[i] = formattedLon[i];
+                    formattedLat[i] = ExtractLatitude(result, LatStartIndex);
+                    LatData[i] = formattedLat[i];
+                    formattedAddress[i] = ExtractFormattedAddress(result, addressStartingIndex);
+                    AddressData[i] = formattedAddress[i];
+                    i++;
+                    LonStartIndex = result.IndexOf("\\\"lon\\\"", LonStartIndex) + 10;
+                    LatStartIndex = result.IndexOf("\\\"lat\\\"", LatStartIndex) + 10;
+                    addressStartingIndex = result.IndexOf("\\\"display_name\\\"", addressStartingIndex) + 19;
+
+                } while (formattedAddress[i - 1] != null && i < 6);
+                double top = 0;
+                for (i = 0; i < formattedAddress.Length; i++)
+                {
+                    string buttontext = formattedAddress[i];
+                    if (buttontext != null)
+                    {
+                        Button newButton = new Button();
+                        newButton.Content = buttontext;
+                        newButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+                        newButton.Width = 498;
+                        newButton.Height = 30;
+                        newButton.Background = new SolidColorBrush(Colors.White);
+
+                        // Menambahkan event handler untuk button
+                        int index = i; // Membuat salinan variabel indeks
+                        newButton.Click += (sender, e) => Button_Click(sender, e, index);
+
+                        // Menentukan posisi button
+                        Canvas.SetTop(newButton, top);
+                        Canvas.SetLeft(newButton, 0);
+
+                        // Menambahkan button ke dalam canvas
+                        canvas.Children.Add(newButton);
+
+                        // Mengatur posisi untuk button selanjutnya
+                        top += newButton.Height;
+                    }
                 }
             }
+        }
 
-            private void txtLocationQueryChanged(object sender, TextChangedEventArgs e)
+        private void LocationKeyUp(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
             {
-                if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
-                {
-                    txtCariLokasi.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    txtCariLokasi.Visibility = Visibility.Visible;
-                }
+                ImgX.Visibility = Visibility.Visible;
+                txtCariLokasi.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                ImgX.Visibility = Visibility.Hidden;
+                txtCariLokasi.Visibility = Visibility.Visible;
+                canvas.Children.Clear();
+            }
+        }
 
-            private void ClickLocationexpand(object sender, RoutedEventArgs e)
+        private void txtLocationQueryChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
             {
-                MessageBox.Show(AlamatMap);
+                txtCariLokasi.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                txtCariLokasi.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ClickLocationexpand(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(AlamatMap);
         }
     } 
 }
