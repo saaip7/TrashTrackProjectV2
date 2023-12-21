@@ -36,18 +36,18 @@ namespace TrashTrackProjectV2.View
             MessageBox.Show($"Berhasil Menambahkan {basicVoucher.voucherValue()} Voucher");
         }
 
-        private void btn_click_standart(object sender, RoutedEventArgs e)
+        private void btn_click_medium(object sender, RoutedEventArgs e)
         {
             mediumVoucher medium = new mediumVoucher();
             medium.AddVoucher();
-            MessageBox.Show("Berhasil Menambahkan {medium.voucherValue()} Voucher");
+            MessageBox.Show($"Berhasil Menambahkan {medium.voucherValue()} Voucher");
         }
 
-        private void btn_click_vip(object sender, RoutedEventArgs e)
+        private void btn_click_premium(object sender, RoutedEventArgs e)
         {
             premiumVoucher premium = new premiumVoucher();
             premium.AddVoucher();
-            MessageBox.Show("Berhasil Menambahkan {premium.voucherValue()} Voucher");
+            MessageBox.Show($"Berhasil Menambahkan {premium.voucherValue()} Voucher");
         }
     }
 }

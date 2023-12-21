@@ -150,21 +150,21 @@ namespace TrashTrackProjectV2.Model
     {
         public basicVoucher()
         {
-            additionalVouchers = 2;
+            additionalVouchers = 3;
         }
     }
     public class mediumVoucher : subscription
     {
         public mediumVoucher()
         {
-            additionalVouchers = 4;
+            additionalVouchers = 6;
         }
     }
     public class premiumVoucher : subscription
     {
         public premiumVoucher()
         {
-            additionalVouchers = 8;
+            additionalVouchers = 10;
         }
     }
 }
