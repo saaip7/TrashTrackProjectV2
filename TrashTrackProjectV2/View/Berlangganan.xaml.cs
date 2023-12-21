@@ -39,14 +39,14 @@ namespace TrashTrackProjectV2.View
         private void btn_click_standart(object sender, RoutedEventArgs e)
         {
             mediumVoucher medium = new mediumVoucher();
-            subscription.AddVoucher();
+            medium.AddVoucher();
             MessageBox.Show("Berhasil Menambahkan {medium.voucherValue()} Voucher");
         }
 
         private void btn_click_vip(object sender, RoutedEventArgs e)
         {
             premiumVoucher premium = new premiumVoucher();
-            subscription.AddVoucher();
+            premium.AddVoucher();
             MessageBox.Show("Berhasil Menambahkan {premium.voucherValue()} Voucher");
         }
     }
