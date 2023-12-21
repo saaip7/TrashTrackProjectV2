@@ -112,23 +112,34 @@ namespace TrashTrackProjectV2.View
             layer.Features = new List<PointFeature> { pointFeature };
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
-            var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
-            PinCoordinate = pinLonLat;
-            string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
-            string formattedAddress = ExtractFormattedAddress(address);
-            pesan.alamat = formattedAddress;
-            AlamatMap = formattedAddress;
-            txtKoor.Text = AlamatMap;   
-            if (txtKoor.Text.Length > 51)
+            MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
+            if (bbox.Contains(worldPosition))
             {
-                BtnLocationExpand.Visibility = Visibility.Visible;
+                var pinLonLat = SphericalMercator.ToLonLat(worldPosition);
+                PinCoordinate = pinLonLat;
+                string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
+                string formattedAddress = ExtractFormattedAddress(address);
+                pesan.alamat = formattedAddress;
+                AlamatMap = formattedAddress;
+                txtKoor.Text = AlamatMap;
+                if (txtKoor.Text.Length > 51)
+                {
+                    BtnLocationExpand.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    BtnLocationExpand.Visibility = Visibility.Collapsed;
+                }
+                MessageBox.Show(formattedAddress);
+                canvas.Children.Clear();
             }
             else
             {
-                BtnLocationExpand.Visibility = Visibility.Collapsed;
+                MessageBox.Show("Lokasi berada di luar jangkauan");
+                MapControl.Map.Layers.Remove(layer);
+                AlamatMap = new string(string.Empty);
+                txtKoor.Text = AlamatMap;
             }
-            MessageBox.Show(formattedAddress);
-            canvas.Children.Clear();
         }
         public async Task<string> GetAddressFromCoordinates(double latitude, double longitude, string apiKey)
         {
@@ -529,7 +540,7 @@ namespace TrashTrackProjectV2.View
             }
             else
             {
-                MessageBox.Show("Lokasi berada diluar jangkauan");
+                MessageBox.Show("Lokasi berada di luar jangkauan");
                 canvas.Children.Clear();
                 txtLocationQuery.Clear();
             }
