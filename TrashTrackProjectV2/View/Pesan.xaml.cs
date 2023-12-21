@@ -39,6 +39,7 @@ namespace TrashTrackProjectV2.View
     public partial class Pesan : UserControl
     {
         public static MPoint PinCoordinate = new MPoint(0, 0);
+        public static string AlamatMap = new string(string.Empty); 
         string[] LatData = new string[7];
         string[] LonData = new string[7];
         string[] AddressData = new string[7];
@@ -60,6 +61,7 @@ namespace TrashTrackProjectV2.View
             layer.Features = new List<PointFeature> { pointFeature };
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
+            txtKoor.Text = AlamatMap;
         }
 
         //mendapat bitmap id dari gambar
@@ -99,6 +101,8 @@ namespace TrashTrackProjectV2.View
             PinCoordinate = pinLonLat;
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
+            AlamatMap = formattedAddress;
+            txtKoor.Text = AlamatMap;
             MessageBox.Show(formattedAddress);
             canvas.Children.Clear();
         }
@@ -305,6 +309,8 @@ namespace TrashTrackProjectV2.View
             double Lat = double.Parse(LatData[index], CultureInfo.InvariantCulture);
             double Lon = double.Parse(LonData[index], CultureInfo.InvariantCulture);
             PinCoordinate = new MPoint(Lon, Lat);
+            AlamatMap = AddressData[index];
+            txtKoor.Text = AlamatMap;
             var coordinate = SphericalMercator.FromLonLat(Lon, Lat);
             MPoint FlyCoordinate = new MPoint(coordinate.x, coordinate.y);
             MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
@@ -414,11 +420,25 @@ namespace TrashTrackProjectV2.View
             if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
             {
                 ImgX.Visibility = Visibility.Visible;
+                txtCariLokasi.Visibility = Visibility.Collapsed;
             }
             else
             {
                 ImgX.Visibility = Visibility.Hidden;
+                txtCariLokasi.Visibility = Visibility.Visible;
                 canvas.Children.Clear();
+            }
+        }
+
+        private void txtLocationQueryChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtLocationQuery.Text) && txtLocationQuery.Text.Length > 0)
+            {
+                txtCariLokasi.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                txtCariLokasi.Visibility = Visibility.Visible;
             }
         }
     }

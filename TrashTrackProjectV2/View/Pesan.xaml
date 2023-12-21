@@ -32,7 +32,7 @@
                 </Grid>
                 <Border>
                     <Grid Height="48">
-                        <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp" Margin="60 10" Height="20" BorderThickness="1.5" BorderBrush="#04444D"/>
+                        <TextBox x:Name="txtLocationQuery" Text="" KeyDown="LocationKeyDown" IsReadOnly="False" KeyUp="LocationKeyUp" Margin="60 10" Height="20" BorderThickness="1.5" BorderBrush="#04444D" TextChanged="txtLocationQueryChanged" />
                         <Image x:Name="ImgX" Source="/img/crossClose.png" Margin="522,0,0,0" MouseUp="ClickX" Visibility="Collapsed" Style="{StaticResource imgClose}" HorizontalAlignment="Left" Height="17" VerticalAlignment="Center" Width="17"/>
                         <Image x:Name="ImgSearch" Source="/img/searchicon.png" Margin="542,0,0,0" MouseUp="ClickSearch" Style="{StaticResource imgClose}" HorizontalAlignment="Left" Height="17" VerticalAlignment="Center" Width="17"/>
                     </Grid>
@@ -65,7 +65,7 @@
                                 <!--// Baris 2 //-->
                                 <TextBlock Text="Alamat Tujuan" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="txtKoor" Text="coba ini isi koordinatmu" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="txtKoor" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
 
                                 <!--// Baris 3 //-->
                                 <TextBlock Text="Estimasti Tiba" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -84,6 +84,7 @@
             </StackPanel>
         </Border>
         <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="217" Margin="0,105,0,0" VerticalAlignment="Top" Width="498" Grid.Column="1"/>
+        <TextBlock x:Name="txtCariLokasi" HorizontalAlignment="Left" Height="13" FontSize="12" FontFamily="Inter"  Margin="65,88,0,0" TextWrapping="Wrap" Text="Cari lokasi . . ." VerticalAlignment="Top" Width="72" Grid.ColumnSpan="2" Foreground="#7f7f7f" TextAlignment="Justify"/>
     </Grid>
 
 </UserControl>
