@@ -62,6 +62,14 @@ namespace TrashTrackProjectV2.View
             layer.Style = null;
             MapControl.Map.Layers.Add(layer);
             txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility = Visibility.Collapsed;
+            }
         }
 
         //mendapat bitmap id dari gambar
@@ -102,7 +110,16 @@ namespace TrashTrackProjectV2.View
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
             AlamatMap = formattedAddress;
+            
             txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility= Visibility.Collapsed;
+            }
             MessageBox.Show(formattedAddress);
             canvas.Children.Clear();
         }
@@ -311,6 +328,14 @@ namespace TrashTrackProjectV2.View
             PinCoordinate = new MPoint(Lon, Lat);
             AlamatMap = AddressData[index];
             txtKoor.Text = AlamatMap;
+            if (txtKoor.Text.Length > 51)
+            {
+                BtnLocationExpand.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLocationExpand.Visibility = Visibility.Collapsed;
+            }
             var coordinate = SphericalMercator.FromLonLat(Lon, Lat);
             MPoint FlyCoordinate = new MPoint(coordinate.x, coordinate.y);
             MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
@@ -440,6 +465,11 @@ namespace TrashTrackProjectV2.View
             {
                 txtCariLokasi.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ClickLocationexpand(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(AlamatMap);
         }
     }
 }
