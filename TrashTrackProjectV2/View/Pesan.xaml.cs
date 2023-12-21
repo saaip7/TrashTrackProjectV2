@@ -292,6 +292,9 @@ namespace TrashTrackProjectV2.View
             txtNama.Text = "";
             txtWaktu.Text = "";
             txtKoor.Text = "";
+            AlamatMap = new string(string.Empty);
+            BtnLocationExpand.Visibility = Visibility.Collapsed;
+            MessageBox.Show("Terimakasih sudah menggunakan jasa kami :D");
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
         }
