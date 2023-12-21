@@ -28,7 +28,7 @@
                 <Grid>
                     <TextBlock Text="Pesan" FontWeight="Bold" FontSize="30" Height="41" Foreground="#1D1D21" Margin="60,15,461,15"/>
                     <TextBlock Text="Voucher Tersisa: " FontSize="16" FontWeight="SemiBold" Margin="414,30,59,19" Foreground="#1D1D21"/>
-                    <TextBlock Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
+                    <TextBlock x:Name="lblVoucher" Text="{Binding DisplayVoucher}" Foreground="#04444D" FontSize="16" FontWeight="Bold"  Margin="537,30,59,15"/>
                 </Grid>
                 <Border>
                     <Grid Height="48">
@@ -60,18 +60,21 @@
                                 <!--// Baris 1 //-->
                                 <TextBlock Text="Nama Petugas" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <Label Content="" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" x:Name="HasilLabel"/>
-                                <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/>
+
+                                <TextBlock x:Name="txtNama" Text="{Binding DisplayNamaPetugas}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center"/>
+<!--                                 <Label Content="" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" x:Name="HasilLabel"/>
+                                <TextBlock Text="Supardi" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/> -->
 
                                 <!--// Baris 2 //-->
                                 <TextBlock Text="Alamat Tujuan" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="txtKoor" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
-
+                                <TextBlock x:Name="txtKoor" Text="{Binding DisplayAlamat}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="26,1,0,0" Grid.Row="1"/>
+                                <TextBlock x:Name="txtlongitude" Text="{Binding DisplayLongitude}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Top" Margin="174,19,2,0" Grid.Row="1" Grid.RowSpan="2"/>
+                                <TextBlock x:Name="txtlatitude" Text="{Binding DisplayLatitude}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="26,20,177,0" Grid.Row="1" Grid.RowSpan="2"/>
                                 <!--// Baris 3 //-->
                                 <TextBlock Text="Estimasti Tiba" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <TextBlock Text=":" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <TextBlock Text="di isi estimate" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>
+                                <TextBlock x:Name="txtWaktu" Text="{Binding DisplayEstimasi}" FontSize="14" FontWeight="SemiBold" Foreground="#1D1D21" Grid.Column="2" VerticalAlignment="Center" Grid.Row="2"/>       
                                 <Button x:Name="BtnLocationExpand" Content="&gt;" HorizontalAlignment="Left" Height="19" Margin="315,10,0,0" VerticalAlignment="Top" Width="22" BorderThickness="0" Background="#E4E1DC" Foreground="#1D1D21" 
                                         FontSize="30" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="1" 
                                         Padding="-13" Visibility="Hidden" Click="ClickLocationexpand"/>

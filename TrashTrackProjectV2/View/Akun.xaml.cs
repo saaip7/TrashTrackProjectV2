@@ -33,7 +33,7 @@ namespace TrashTrackProjectV2.View
             selesai_button.Visibility = Visibility.Visible;
         }
         private void Selesai_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             User user = new User();
             user.Nama = txtbName.Text;
             user.Email = txtbEmail.Text;

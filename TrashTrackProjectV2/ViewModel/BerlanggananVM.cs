@@ -26,10 +26,8 @@ namespace TrashTrackProjectV2.ViewModel
 
         public BerlanggananVM()
         {
-
             _pageModel = new PageModel();
-            DisplayDayPaket = 8;
-           
+            DisplayDayPaket = new basicVoucher().voucherValue();
         }
      
     }

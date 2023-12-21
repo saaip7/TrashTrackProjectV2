@@ -31,23 +31,23 @@ namespace TrashTrackProjectV2.View
 
         private void btn_click_basic(object sender, RoutedEventArgs e)
         {
-            subscription subscription = new subscription();
-            subscription.AddVoucher(userID, 3);
-            MessageBox.Show("Berhasil Menambahkan 3 Voucher");
+            basicVoucher basicVoucher = new basicVoucher();
+            basicVoucher.AddVoucher();
+            MessageBox.Show($"Berhasil Menambahkan {basicVoucher.voucherValue()} Voucher");
         }
 
         private void btn_click_standart(object sender, RoutedEventArgs e)
         {
-            subscription subscription = new subscription();
-            subscription.AddVoucher(userID, 6);
-            MessageBox.Show("Berhasil Menambahkan 6 Voucher");
+            mediumVoucher medium = new mediumVoucher();
+            subscription.AddVoucher();
+            MessageBox.Show("Berhasil Menambahkan {medium.voucherValue()} Voucher");
         }
 
         private void btn_click_vip(object sender, RoutedEventArgs e)
         {
-            subscription subscription = new subscription();
-            subscription.AddVoucher(userID, 10);
-            MessageBox.Show("Berhasil Menambahkan 10 Voucher");
+            premiumVoucher premium = new premiumVoucher();
+            subscription.AddVoucher();
+            MessageBox.Show("Berhasil Menambahkan {premium.voucherValue()} Voucher");
         }
     }
 }

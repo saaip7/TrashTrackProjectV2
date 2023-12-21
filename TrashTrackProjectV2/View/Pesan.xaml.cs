@@ -21,9 +21,10 @@ using Mapsui.Extensions;
 using Mapsui.Projections;
 using System.Net.Http;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using TrashTrackProjectV2.Model;
+using System.Data.SqlClient;
+using System.Configuration;
 using NetTopologySuite.Algorithm;
 using System.Collections;
 using System.Configuration;
@@ -38,7 +39,12 @@ namespace TrashTrackProjectV2.View
     /// </summary>
     public partial class Pesan : UserControl
     {
+        public static string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        public static string userID = File.ReadAllText(@"jwt.json");
+        private string alamat;
+        private DateTime estimasiWaktu;
         public static MPoint PinCoordinate = new MPoint(0, 0);
+        TrashTrackProjectV2.Model.Pesan pesan = new TrashTrackProjectV2.Model.Pesan();
         public static string AlamatMap = new string(string.Empty);
         string[] LatData = new string[7];
         string[] LonData = new string[7];
@@ -46,11 +52,13 @@ namespace TrashTrackProjectV2.View
         public Pesan()
         {
             InitializeComponent();
+            CekPesan();
             //Create Map
             MapControl.Map?.Layers.Add(Mapsui.Tiling.OpenStreetMap.CreateTileLayer());
             //Map Borders
             MapControl.Map.Navigator.OverridePanBounds = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
             MapControl.Map.Navigator.OverrideZoomBounds = new MMinMax(0, 200);
+            lblbinding.Text = pesan.isPesanActive().ToString();
             var coordinate = SphericalMercator.FromLonLat(PinCoordinate.X, PinCoordinate.Y);
             var pointFeature = new PointFeature(coordinate.x, coordinate.y)
             {
@@ -109,8 +117,11 @@ namespace TrashTrackProjectV2.View
             PinCoordinate = pinLonLat;
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
+            pesan.alamat = formattedAddress;
+            txtKoor.Text = formattedAddress;
+            txtlatitude.Text = PinCoordinate.X.ToString();
+            txtlongitude.Text = PinCoordinate.Y.ToString();
             AlamatMap = formattedAddress;
-
             txtKoor.Text = AlamatMap;
             if (txtKoor.Text.Length > 51)
             {
@@ -231,16 +242,171 @@ namespace TrashTrackProjectV2.View
 
         private void PesenBtn_Click(object sender, RoutedEventArgs e)
         {
-            PesenBtn.Visibility = Visibility.Hidden;
-            SelesaiBtn.Visibility = Visibility.Visible;
+            subscription subscription = new subscription(-1);
+            long voucher = subscription.GetVoucherValue()-1;
+            if (voucher < 0)
+            {
+                MessageBox.Show("Voucher anda sudah habis");
+            }
+            else
+            {
+                subscription.AddVoucher();
+                pesan.namaPetugas = NamaPetugas();
+                txtNama.Text = pesan.namaPetugas;
+                PesenBtn.Visibility = Visibility.Hidden;
+                SelesaiBtn.Visibility = Visibility.Visible;
+                pesan.latitude = PinCoordinate.X;
+                pesan.longitude = PinCoordinate.Y;
+                // Mendapatkan tanggal dan waktu saat ini
+                DateTime currentTime = DateTime.Now;
+                // Menambahkan satu jam ke tanggal dan waktu saat ini
+                estimasiWaktu= currentTime.AddHours(1);
+                pesan.estimasi = estimasiWaktu.ToString();
+                txtWaktu.Text = estimasiWaktu.ToString(@"hh\:mm\:ss");
+                lblVoucher.Text = voucher.ToString();
+                insertPesan();
+            }
         }
 
+        
         private void SelesaiBtn_Click(object sender, RoutedEventArgs e)
         {
+
+            //tambahkan pesanan ke history
+            insertHistory();
+            deletePesanan();
+            txtNama.Text = "";
+            txtWaktu.Text = "";
+            txtKoor.Text="";
+            txtlatitude.Text = "";
+            txtlongitude.Text = "";
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
         }
 
+        private string NamaPetugas()
+        {
+            // Array nama petugas
+            string[] nama = { "Budi", "Siti", "Dewi", "Rudi", "Andi", "Lina", "Hadi", "Nina", "Eko", "Linda", "Ari", "Maya", "Doni", "Dina", "Hery", "Rina", "Adi", "Anita", "Joko", "Yuni" };       
+            Random random = new Random();
+            // Mendapatkan indeks acak
+            int randomIndex = random.Next(nama.Length);
+            // Mengambil nilai dari array pada indeks acak
+            string petugasRandom = nama[randomIndex];
+
+            return petugasRandom;
+        }
+        private void CekPesan() 
+        { 
+            if (pesan.isPesanActive())
+            {
+                PesenBtn.Visibility = Visibility.Hidden;
+                SelesaiBtn.Visibility = Visibility.Visible;
+            }
+        }
+        
+        private bool insertPesan()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            bool isSuccess = false;
+            try
+            {
+                string query = "INSERT INTO tb_pesanan (user_id, namaPetugas, alamat, latitude, longitude, EstimasiPengambilan, Status) VALUES (@user_id, @Nama, @alamat, @latitude, @longtitude, @estimasi, @status)";
+
+                // Membuka koneksi ke database
+                connection.Open();
+
+                // Membuat objek SqlCommand
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Menambahkan parameter ke query
+                    command.Parameters.AddWithValue("@user_id", userID);
+                    command.Parameters.AddWithValue("@Nama", pesan.namaPetugas);
+                    command.Parameters.AddWithValue("@alamat", pesan.alamat);
+                    command.Parameters.AddWithValue("@latitude", pesan.latitude);
+                    command.Parameters.AddWithValue("@longtitude", pesan.longitude);
+                    command.Parameters.AddWithValue("@estimasi", pesan.estimasi);
+                    command.Parameters.AddWithValue("@status", "Belum diambil");
+
+                    // Eksekusi perintah SQL
+                    int rows = command.ExecuteNonQuery();
+                    if (rows > 0)
+                    {
+                        isSuccess = true;
+                    }
+                    else
+                    {
+                        isSuccess = false;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isSuccess;
+        }
+        private void deletePesanan()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("DELETE FROM tb_pesanan WHERE user_id = @UserId", connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userID);
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+        private bool insertHistory()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            bool isSuccess = false;
+            try
+            {
+                string query = "INSERT INTO tb_history (user_id, NamaPetugas, Alamat, Latitude, Longitude, EstimasiPengambilan, Status) SELECT user_id, NamaPetugas, Alamat, Latitude, Longitude, EstimasiPengambilan, 'Selesai' AS Status FROM tb_pesanan WHERE user_id=@user_id; DELETE FROM tb_pesanan WHERE user_id=@user_id";
+                //string query = "INSERT INTO tb_history (user_id, namaPetugas, alamat, latitude, longitude, EstimasiPengambilan, Status) VALUES (@user_id, @Nama, @alamat, @latitude, @longtitude, @estimasi, @status)";
+
+                // Membuka koneksi ke database
+                connection.Open();
+
+                // Membuat objek SqlCommand
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Menambahkan parameter ke query
+                    command.Parameters.AddWithValue("@user_id", userID);
+                   
+
+                    // Eksekusi perintah SQL
+                    int rows = command.ExecuteNonQuery();
+                    if (rows > 0)
+                    {
+                        isSuccess = true;
+                    }
+                    else
+                    {
+                        isSuccess = false;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isSuccess;
         private async void LocationKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
