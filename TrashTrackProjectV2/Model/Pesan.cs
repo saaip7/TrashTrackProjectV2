@@ -67,7 +67,7 @@ namespace TrashTrackProjectV2.Model
                         { 
                             // Setel nilai-nilai dari database ke instance User
                             pesan1.namaPetugas = reader["NamaPetugas"].ToString();
-                            pesan1.alamat =reader["Alamat"].ToString();
+                            pesan1.alamat = reader["Alamat"].ToString();
                             pesan1.latitude= (double) reader.GetDecimal(reader.GetOrdinal("latitude"));
                             pesan1.longitude = (double) reader.GetDecimal(reader.GetOrdinal("longitude"));
                             pesan1.estimasi = reader["EstimasiPengambilan"].ToString();

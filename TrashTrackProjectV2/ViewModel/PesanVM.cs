@@ -80,11 +80,13 @@ namespace TrashTrackProjectV2.ViewModel
             if (_pageModel.isPesanActive())
             {
                 _pageModel = _pageModel.GetPesanActive();
+                DateTime estimasi;
+                DateTime.TryParse(_pageModel.estimasi, out estimasi);
                 DisplayNamaPetugas = _pageModel.namaPetugas;
                 DisplayAlamat = _pageModel.alamat;
                 DisplayLatitude = _pageModel.latitude;
                 DisplayLongitude = _pageModel.longitude;
-                DisplayEstimasi = _pageModel.estimasi;
+                DisplayEstimasi = estimasi.ToString(@"HH\:mm\:ss");
             }
             DisplayVoucher = subscription.GetVoucherValue();
         }

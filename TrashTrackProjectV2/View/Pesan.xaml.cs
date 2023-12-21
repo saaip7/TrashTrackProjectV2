@@ -268,6 +268,7 @@ namespace TrashTrackProjectV2.View
                 txtNama.Text = pesan.namaPetugas;
                 PesenBtn.Visibility = Visibility.Hidden;
                 SelesaiBtn.Visibility = Visibility.Visible;
+                //mendapatkan koordinat dari pin
                 pesan.latitude = PinCoordinate.X;
                 pesan.longitude = PinCoordinate.Y;
                 // Mendapatkan tanggal dan waktu saat ini
@@ -275,7 +276,7 @@ namespace TrashTrackProjectV2.View
                 // Menambahkan satu jam ke tanggal dan waktu saat ini
                 estimasiWaktu = currentTime.AddHours(1);
                 pesan.estimasi = estimasiWaktu.ToString();
-                txtWaktu.Text = estimasiWaktu.ToString(@"hh\:mm\:ss");
+                txtWaktu.Text = estimasiWaktu.ToString(@"HH\:mm\:ss");
                 lblVoucher.Text = voucher.ToString();
                 insertPesan();
             }
@@ -315,15 +316,12 @@ namespace TrashTrackProjectV2.View
         {
             if (pesan.isPesanActive())
             {
+                AlamatMap = pesan.GetPesanActive().alamat;
+                txtKoor.Text = pesan.GetPesanActive().alamat;
                 PesenBtn.Visibility = Visibility.Hidden;
                 SelesaiBtn.Visibility = Visibility.Visible;
             }
-            else
-            {
-                txtKoor.Text = string.Empty;
-                PesenBtn.Visibility = Visibility.Visible;
-                SelesaiBtn.Visibility = Visibility.Hidden;
-            }
+   
         }
 
         private bool insertPesan()
