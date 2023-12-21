@@ -22,13 +22,11 @@ namespace TrashTrackProjectV2.ViewModel
         }
 
         public ICommand BerandaCommand { get; set; }
-        public ICommand RiwayatCommand { get; set; }
         public ICommand PesanCommand { get; set; }
         public ICommand BerlanggananCommand { get; set; }
         public ICommand AkunCommand { get; set; }
 
         private void Beranda(object obj) => CurrentView = new BerandaVM();
-        private void Riwayat(object obj) => CurrentView = new RiwayatVM();
         private void Pesan(object obj) => CurrentView = new PesanVM();
         private void Berlangganan(object obj) => CurrentView = new BerlanggananVM();
         private void Akun(object obj) => CurrentView = new AkunVM();
@@ -36,7 +34,6 @@ namespace TrashTrackProjectV2.ViewModel
         public NavigationVM()
         {
             BerandaCommand = new RelayCommand(Beranda);
-            RiwayatCommand = new RelayCommand(Riwayat);
             PesanCommand = new RelayCommand(Pesan);
             BerlanggananCommand = new RelayCommand(Berlangganan);
             AkunCommand = new RelayCommand(Akun);

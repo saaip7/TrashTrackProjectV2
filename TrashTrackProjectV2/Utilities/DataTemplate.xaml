@@ -11,10 +11,6 @@
         <view:Pesan/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:RiwayatVM}">
-        <view:Riwayat/>
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:BerlanggananVM}">
         <view:Berlangganan/>
     </DataTemplate>

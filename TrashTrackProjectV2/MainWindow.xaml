@@ -56,13 +56,6 @@
                         </Grid>
                     </Menu:Btn>
 
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding RiwayatCommand}">
-                        <Grid>
-                            <Image Source="img/riwayat.png" Style="{StaticResource Image_Style}" />
-                            <TextBlock Text="nanti dihapus" Style="{StaticResource Text_Style}" Margin="70,0,0,14" VerticalAlignment="Bottom" />
-                        </Grid>
-                    </Menu:Btn>
-
                     <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding BerlanggananCommand}">
                         <Grid>
                             <Image Source="img/berlangganan.png" Style="{StaticResource Image_Style}" />
