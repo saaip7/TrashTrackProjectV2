@@ -117,11 +117,8 @@ namespace TrashTrackProjectV2.View
             string address = await (GetAddressFromCoordinates(pinLonLat.Y, pinLonLat.X, "a77f4e85a7714142b456302043856fe7"));
             string formattedAddress = ExtractFormattedAddress(address);
             pesan.alamat = formattedAddress;
-            txtKoor.Text = formattedAddress;
-            txtlatitude.Text = PinCoordinate.X.ToString();
-            txtlongitude.Text = PinCoordinate.Y.ToString();
             AlamatMap = formattedAddress;
-            txtKoor.Text = AlamatMap;
+            txtKoor.Text = AlamatMap;   
             if (txtKoor.Text.Length > 51)
             {
                 BtnLocationExpand.Visibility = Visibility.Visible;
@@ -249,6 +246,12 @@ namespace TrashTrackProjectV2.View
             }
             else
             {
+                if (txtKoor.Text == null || txtKoor.Text == "")
+                {
+                    MessageBox.Show("Lokasi belum ditentukan");
+                    return;
+                }
+                else { 
                 subscription.AddVoucher();
                 pesan.namaPetugas = NamaPetugas();
                 txtNama.Text = pesan.namaPetugas;
@@ -265,6 +268,7 @@ namespace TrashTrackProjectV2.View
                 lblVoucher.Text = voucher.ToString();
                 insertPesan();
             }
+            }
         }
 
 
@@ -277,8 +281,6 @@ namespace TrashTrackProjectV2.View
             txtNama.Text = "";
             txtWaktu.Text = "";
             txtKoor.Text = "";
-            txtlatitude.Text = "";
-            txtlongitude.Text = "";
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
         }
@@ -302,6 +304,12 @@ namespace TrashTrackProjectV2.View
                 PesenBtn.Visibility = Visibility.Hidden;
                 SelesaiBtn.Visibility = Visibility.Visible;
             }
+            else
+            {
+                txtKoor.Text = string.Empty;
+                PesenBtn.Visibility = Visibility.Visible;
+                SelesaiBtn.Visibility = Visibility.Hidden;
+            }
         }
 
         private bool insertPesan()
@@ -321,9 +329,9 @@ namespace TrashTrackProjectV2.View
                     // Menambahkan parameter ke query
                     command.Parameters.AddWithValue("@user_id", userID);
                     command.Parameters.AddWithValue("@Nama", pesan.namaPetugas);
-                    command.Parameters.AddWithValue("@alamat", pesan.alamat);
-                    command.Parameters.AddWithValue("@latitude", pesan.latitude);
-                    command.Parameters.AddWithValue("@longtitude", pesan.longitude);
+                    command.Parameters.AddWithValue("@alamat", txtKoor.Text);
+                    command.Parameters.AddWithValue("@latitude", PinCoordinate.X);
+                    command.Parameters.AddWithValue("@longtitude", PinCoordinate.Y);
                     command.Parameters.AddWithValue("@estimasi", pesan.estimasi);
                     command.Parameters.AddWithValue("@status", "Belum diambil");
 

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TrashTrackProjectV2.View;
+using System.IO;
 
 namespace TrashTrackProjectV2
 {
@@ -37,6 +38,7 @@ namespace TrashTrackProjectV2
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
             this.Close();
+            File.WriteAllText(@"jwt.json", string.Empty);
             Pesan.PinCoordinate = new MPoint(0,0);
             Pesan.AlamatMap = new string(string.Empty);
         }
