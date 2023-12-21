@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="SignUpPage" Height="500" Width="800"
+        Title="TrashTrack | Sign Up" Height="500" Width="800"
         Icon="img/logo new.png">
     <Grid>
         <Grid.ColumnDefinitions>
