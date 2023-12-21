@@ -100,7 +100,7 @@ namespace TrashTrackProjectV2.View
 
         private async void MapRBUp(object sender, MouseButtonEventArgs e)
         {
-            if (!pesan.isPesanActive())
+            if (txtNama.Text == "")
             {
                 //menghapus pin yang sudah ada
                 var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
@@ -447,7 +447,7 @@ namespace TrashTrackProjectV2.View
         }
         private async void LocationKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && !pesan.isPesanActive())
+            if (e.Key == Key.Enter && txtNama.Text == "")
             {
                 canvas.Children.Clear();
                 if (txtLocationQuery.Text != null)
@@ -518,7 +518,7 @@ namespace TrashTrackProjectV2.View
                     }
                 }
             }
-            else if (e.Key == Key.Enter && pesan.isPesanActive())
+            else if (e.Key == Key.Enter && txtNama.Text != "")
             {
 
                 MessageBox.Show("Pesanan sedang berlangsung. Mohon tunggu hingga pesanan selesai");
@@ -579,7 +579,7 @@ namespace TrashTrackProjectV2.View
 
         private async void ClickSearch(object sender, MouseButtonEventArgs e)
         {
-            if (!pesan.isPesanActive())
+            if (txtNama.Text == "")
             {
                 canvas.Children.Clear();
                 if (txtLocationQuery.Text != null)
@@ -650,7 +650,7 @@ namespace TrashTrackProjectV2.View
                     }
                 }
             }
-            else if (pesan.isPesanActive())
+            else
             {
                 MessageBox.Show("Pesanan sedang berlangsung. Mohon tunggu hingga pesanan selesai");
             }
