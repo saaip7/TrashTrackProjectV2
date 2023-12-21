@@ -40,7 +40,7 @@ namespace TrashTrackProjectV2.View
     public partial class Pesan : UserControl
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
-        public static string userID = File.ReadAllText(@"jwt.json");
+        public string userID = File.ReadAllText(@"jwt.json");
         private string alamat;
         private DateTime estimasiWaktu;
         public static MPoint PinCoordinate = new MPoint(0, 0);
@@ -334,6 +334,8 @@ namespace TrashTrackProjectV2.View
         {
             if (pesan.isPesanActive())
             {
+                /*txtNama.Text = pesan.GetPesanActive().namaPetugas;
+                txtWaktu.Text = pesan.GetPesanActive().estimasi;*/
                 AlamatMap = pesan.GetPesanActive().alamat;
                 txtKoor.Text = pesan.GetPesanActive().alamat;
                 PesenBtn.Visibility = Visibility.Hidden;

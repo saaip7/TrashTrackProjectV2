@@ -42,7 +42,8 @@ namespace TrashTrackProjectV2.Model
                         }
                         else
                         {
-                            return false;                        }
+                            return false;                       
+                        }
                     }
                 }
             }
