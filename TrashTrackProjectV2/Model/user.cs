@@ -45,8 +45,9 @@ namespace TrashTrackProjectV2.Model
             Alamat = alamat;
         }
         
+        //untuk file exe
         //string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
-        string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
         string userID = File.ReadAllText(@"jwt.json");
 
         public bool Insert(string username, string nama, string email, string password, string notelp, string alamat)

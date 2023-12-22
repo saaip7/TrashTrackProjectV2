@@ -25,8 +25,8 @@ namespace TrashTrackProjectV2.Model
             this.additionalVouchers = additionalVouchers;
         }
 
-        //string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
-        string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
+        //string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
         string userID = File.ReadAllText(@"jwt.json");
         internal long voucherCounter;
 
