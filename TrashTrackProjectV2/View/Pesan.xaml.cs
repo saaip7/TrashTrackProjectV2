@@ -58,7 +58,7 @@ namespace TrashTrackProjectV2.View
             //Map Borders
             MapControl.Map.Navigator.OverridePanBounds = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
             MapControl.Map.Navigator.OverrideZoomBounds = new MMinMax(0, 200);
-            if (pesan.isPesanActive())
+            if (txtNama.Text != "")
             {
                 PinCoordinate.X = pesan.GetPesanActive().latitude;
                 PinCoordinate.Y = pesan.GetPesanActive().longitude;
@@ -314,6 +314,7 @@ namespace TrashTrackProjectV2.View
             {
                 MapControl.Map.Layers.Remove(pinLayer);
             }
+            PinCoordinate = new MPoint(0, 0);
             MessageBox.Show("Terimakasih sudah menggunakan jasa kami :D");
             SelesaiBtn.Visibility = Visibility.Hidden;
             PesenBtn.Visibility = Visibility.Visible;
