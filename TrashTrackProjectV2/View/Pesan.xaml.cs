@@ -276,6 +276,7 @@ namespace TrashTrackProjectV2.View
                 }
                 else
                 {
+                    MessageBox.Show("Petugas akan segera datang ke tempat tujuan");
                     subscription.AddVoucher();
                     pesan.namaPetugas = NamaPetugas();
                     txtNama.Text = pesan.namaPetugas;
