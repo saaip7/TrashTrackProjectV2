@@ -456,11 +456,6 @@ namespace TrashTrackProjectV2.View
                 canvas.Children.Clear();
                 if (txtLocationQuery.Text != null)
                 {
-                    var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
-                    if (pinLayer != null)
-                    {
-                        MapControl.Map.Layers.Remove(pinLayer);
-                    }
                     string result = await (GetCoordinatesFromAddress(txtLocationQuery.Text));
                     if (result == "\"[]\"" && txtLocationQuery.Text != "")
                     {
@@ -530,30 +525,21 @@ namespace TrashTrackProjectV2.View
         }
         private void Button_Click(object sender, RoutedEventArgs e, int index)
         {
-            var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
-            if (pinLayer != null)
-            {
-                MapControl.Map.Layers.Remove(pinLayer);
-            }
+            
             Button clickedButton = (Button)sender;
             double Lat = double.Parse(LatData[index], CultureInfo.InvariantCulture);
             double Lon = double.Parse(LonData[index], CultureInfo.InvariantCulture);
-            PinCoordinate = new MPoint(Lon, Lat);
-            AlamatMap = AddressData[index];
-            txtKoor.Text = AlamatMap;
-            if (txtKoor.Text.Length > 51)
-            {
-                BtnLocationExpand.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BtnLocationExpand.Visibility = Visibility.Collapsed;
-            }
+            
             var coordinate = SphericalMercator.FromLonLat(Lon, Lat);
             MPoint FlyCoordinate = new MPoint(coordinate.x, coordinate.y);
             MRect bbox = new MRect(12250759.8997, -838054.2427, 12339231.2208, -924691.7367);
             if (bbox.Contains(FlyCoordinate))
             {
+                var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
+                if (pinLayer != null)
+                {
+                    MapControl.Map.Layers.Remove(pinLayer);
+                }
                 var pointFeature = new PointFeature(coordinate.x, coordinate.y)
                 {
                     Styles = new[] { new SymbolStyle { BitmapId = GetBitmapIdForEmbeddedResource("img/PinMap.png"), SymbolScale = 0.03 } },
@@ -565,6 +551,17 @@ namespace TrashTrackProjectV2.View
                 MapControl.Map.Layers.Add(layer);
                 MapControl.Map.Navigator.FlyTo(FlyCoordinate, 1, 1L);
                 canvas.Children.Clear();
+                AlamatMap = AddressData[index];
+                txtKoor.Text = AlamatMap;
+                PinCoordinate = new MPoint(Lon, Lat);
+                if (txtKoor.Text.Length > 51)
+                {
+                    BtnLocationExpand.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    BtnLocationExpand.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
@@ -588,11 +585,6 @@ namespace TrashTrackProjectV2.View
                 canvas.Children.Clear();
                 if (txtLocationQuery.Text != null)
                 {
-                    var pinLayer = MapControl.Map.Layers.FirstOrDefault(l => l.Name == "PinLayer");
-                    if (pinLayer != null)
-                    {
-                        MapControl.Map.Layers.Remove(pinLayer);
-                    }
                     string result = await (GetCoordinatesFromAddress(txtLocationQuery.Text));
                     if (result == "\"[]\"" && txtLocationQuery.Text != "")
                     {
