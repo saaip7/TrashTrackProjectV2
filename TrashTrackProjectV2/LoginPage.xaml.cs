@@ -16,6 +16,7 @@ using System.Configuration;
 using System.IO;
 using TrashTrackProjectV2.Model;
 using static TrashTrackProjectV2.Model.User;
+using System.Reflection;
 
 namespace TrashTrackProjectV2
 {
@@ -27,6 +28,19 @@ namespace TrashTrackProjectV2
         public LoginPage()
         {
             InitializeComponent();
+            /*var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var databasePath = System.IO.Path.Combine(appDataPath, "YourAppName", "Database.mdf");
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionString = config.ConnectionStrings.ConnectionStrings["connString"];
+
+            // Set the dynamic part of the connection string
+            connectionString.ConnectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename={databasePath};Integrated Security=True";
+
+            // Save the changes to the configuration file
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("connectionStrings");*/
+
         }
 
         private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)

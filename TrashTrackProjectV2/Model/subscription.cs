@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using TrashTrackProjectV2.Model;
+using System.Reflection;
 
 namespace TrashTrackProjectV2.Model
 {
@@ -23,8 +24,9 @@ namespace TrashTrackProjectV2.Model
         {
             this.additionalVouchers = additionalVouchers;
         }
-        
-        string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+
+        //string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
+        string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
         string userID = File.ReadAllText(@"jwt.json");
         internal long voucherCounter;
 

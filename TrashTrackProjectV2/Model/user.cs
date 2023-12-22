@@ -9,6 +9,7 @@ using System.Windows.Navigation;
 using System.Text.Json;
 using System.IO;
 using System.Windows;
+using System.Reflection;
 
 namespace TrashTrackProjectV2.Model
 {
@@ -44,7 +45,8 @@ namespace TrashTrackProjectV2.Model
             Alamat = alamat;
         }
         
-        string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        //string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
+        string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
         string userID = File.ReadAllText(@"jwt.json");
 
         public bool Insert(string username, string nama, string email, string password, string notelp, string alamat)

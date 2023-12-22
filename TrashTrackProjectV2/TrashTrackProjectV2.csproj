@@ -64,4 +64,13 @@
     <Resource Include="img\user2.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="trashTrackProject.mdf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="trashTrackProject_log.ldf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

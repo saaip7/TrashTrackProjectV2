@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
 using System.Data;
+using System.Reflection;
 
 namespace TrashTrackProjectV2.Model
 {
@@ -19,7 +20,7 @@ namespace TrashTrackProjectV2.Model
         public string estimasi { get; set; }
         public string status { get; set; } 
        
-        string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
         string userID = File.ReadAllText(@"jwt.json");
 
         public bool isPesanActive()

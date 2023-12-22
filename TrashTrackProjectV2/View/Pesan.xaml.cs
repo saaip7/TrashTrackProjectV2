@@ -30,7 +30,7 @@ using System.Collections;
 using System.Configuration;
 using System.Globalization;
 using BruTile.Wms;
-
+using System.Reflection;
 
 namespace TrashTrackProjectV2.View
 {
@@ -39,7 +39,7 @@ namespace TrashTrackProjectV2.View
     /// </summary>
     public partial class Pesan : UserControl
     {
-        public static string connectionString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        public static string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename = {System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\trashTrackProject.mdf; Integrated Security=True";
         public string userID = File.ReadAllText(@"jwt.json");
         private string alamat;
         private DateTime estimasiWaktu;
