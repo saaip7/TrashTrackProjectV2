@@ -157,6 +157,8 @@ namespace TrashTrackProjectV2
             // Tampilkan pesan bahwa insert berhasil
             if (success == true)
             {
+                LoginPage loginPage = new LoginPage();
+
                 //Successfully Inserted
                 MessageBox.Show("New User Successfully Added");
                 //Call the Clear Method Here
@@ -167,6 +169,9 @@ namespace TrashTrackProjectV2
                 txtPassword.Clear();
                 txtNoTelp.Clear();
                 txtAlamat.Clear();
+
+                loginPage.Show();
+                this.Close();
 
             }
             else
