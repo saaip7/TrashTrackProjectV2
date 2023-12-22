@@ -16,24 +16,25 @@ Kemudian copy file "PinMap.png" dari folder img awal, ke img yang baru (dalam fo
 ##Persyaratan
 1. SQL Server Management Studio (SSMS)
 2. SQL Server 2015
+   
 ###Langkah-langkah
 1. Buka SQL Server Management Studio (SSMS):
-  * Jalankan SQL Server Management Studio di komputer Anda.
-  * Hubungkan ke SQL Server:
-3. Hubungkan ke instansi SQL Server Anda menggunakan kredensial server.
-  * Buat Database Baru (Opsional):
-  * Jika Anda ingin mengimpor database ke database baru, buat database baru yang kosong di SSMS.
-4. Buka Jendela Kueri Baru:
-  * Buka jendela kueri baru di SSMS. (Klik kanan pada database)
-5. Buka Berkas SQL:
-  * Klik pada File > Open > File....
-  * Telusuri lokasi berkas .sql Anda dan pilihnya.
-6. Periksa Skrip SQL:
- * Periksa skrip SQL untuk memastikan bahwa itu berisi pernyataan pembuatan database dan struktur tabel yang diperlukan.
+    * Jalankan SQL Server Management Studio di komputer Anda.
+    * Hubungkan ke SQL Server:
+2. Hubungkan ke instansi SQL Server Anda menggunakan kredensial server.
+    * Buat Database Baru (Opsional):
+    * Jika Anda ingin mengimpor database ke database baru, buat database baru yang kosong di SSMS.
+3. Buka Jendela Kueri Baru:
+    * Buka jendela kueri baru di SSMS. (Klik kanan pada database)
+4. Buka Berkas SQL:
+    * Klik pada File > Open > File....
+    * Telusuri lokasi berkas .sql Anda dan pilihnya.
+5. Periksa Skrip SQL:
+    * Periksa skrip SQL untuk memastikan bahwa itu berisi pernyataan pembuatan database dan struktur tabel yang diperlukan.
 7. Jalankan Skrip SQL:
-   * Jalankan skrip SQL dengan mengklik tombol Execute atau menekan F5.
-   * Ini akan menjalankan skrip SQL dan membuat database dan tabel.
-8. Verifikasi Database:
-  * Verifikasi bahwa database dan tabel telah dibuat dengan me-refresh node Database di SSMS Object Explorer.
-9. Selesai:
-  *Anda telah berhasil mengimpor database ke SQL Server Management Studio.
+    * Jalankan skrip SQL dengan mengklik tombol Execute atau menekan F5.
+    * Ini akan menjalankan skrip SQL dan membuat database dan tabel.
+9. Verifikasi Database:
+    * Verifikasi bahwa database dan tabel telah dibuat dengan me-refresh node Database di SSMS Object Explorer.
+8. Selesai:
+    * Anda telah berhasil mengimpor database ke SQL Server Management Studio.
