@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Navigation;
-using System.Runtime.Intrinsics.X86;
 using System.Text.Json;
 using System.IO;
 using System.Windows;
@@ -54,7 +53,7 @@ namespace TrashTrackProjectV2.Model
             bool isSuccessful = false;
             try
             {// Query SQL untuk insert data
-                string query = "INSERT INTO tb_user (username, nama, email, password, notelp, address) VALUES (@Username, @Nama, @Email, @Password, @noTelp, @Alamat)";
+                string query = "INSERT INTO tb_user (username, nama, email, password, notelp, address, Saldo) VALUES (@Username, @Nama, @Email, @Password, @noTelp, @Alamat, @Saldo)";
 
                 // Membuka koneksi ke database
                 connection.Open();
@@ -69,6 +68,7 @@ namespace TrashTrackProjectV2.Model
                     command.Parameters.AddWithValue("@Password", password);
                     command.Parameters.AddWithValue("@noTelp", notelp);
                     command.Parameters.AddWithValue("@Alamat", alamat);
+                    command.Parameters.AddWithValue("@Saldo", 0);
 
                     // Eksekusi perintah SQL
                     int rows = command.ExecuteNonQuery();
