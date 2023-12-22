@@ -146,6 +146,8 @@ namespace TrashTrackProjectV2.View
                     MapControl.Map.Layers.Remove(layer);
                     AlamatMap = new string(string.Empty);
                     txtKoor.Text = AlamatMap;
+                    BtnLocationExpand.Visibility = Visibility.Collapsed;
+                    PinCoordinate = new MPoint(0, 0);
                 }
             }
             else
