@@ -13,11 +13,11 @@ Kemudian copy file "PinMap.png" dari folder img awal, ke img yang baru (dalam fo
   Data Source=localhost\sqlexpress01;Initial Catalog=trashTrackProject;Integrated Security=True
   ```
 ## Instalasi file dalam SQL Server Melalui SQL Server Management Studio
-##Persyaratan
+## Persyaratan
 1. SQL Server Management Studio (SSMS)
 2. SQL Server 2015
    
-###Langkah-langkah
+### Langkah-langkah
 1. Buka SQL Server Management Studio (SSMS):
     * Jalankan SQL Server Management Studio di komputer Anda.
     * Hubungkan ke SQL Server:
